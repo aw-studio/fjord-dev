@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "fjord": "file:vendor/aw-studio/fjord",
+        "fs": "0.0.1-security",
         "jquery": "^3.4.1",
         "vue-gtag": "^1.6.2"
     }
