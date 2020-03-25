@@ -5,7 +5,7 @@
 return [
     'form_fields' => [
         [
-            'translatable' => true,
+            'translatable' => false,
             'id' => 'h1',
             'type' => 'input',
             'title' => 'Headline',

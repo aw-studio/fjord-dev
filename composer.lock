@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5243d016d94c7aea57bea44ce3ebd8d",
+    "content-hash": "5b8bc2cc37a2d9b0c813c02c60be08c8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -144,10 +144,16 @@
         {
             "name": "aw-studio/fjord",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aw-studio/fjord.git",
+                "reference": "a8342dc90d3d40c8858f7be9ec9f7aba12bd0476"
+            },
             "dist": {
-                "type": "path",
-                "url": "packages/aw-studio/fjord",
-                "reference": "0fa7dd1732656218361382fba3611d9535416c59"
+                "type": "zip",
+                "url": "https://api.github.com/repos/aw-studio/fjord/zipball/a8342dc90d3d40c8858f7be9ec9f7aba12bd0476",
+                "reference": "a8342dc90d3d40c8858f7be9ec9f7aba12bd0476",
+                "shasum": ""
             },
             "require": {
                 "astrotomic/laravel-translatable": "^11.1|^11.8",
@@ -171,6 +177,48 @@
                 ],
                 "psr-4": {
                     "AwStudio\\Fjord\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jannes Behrens",
+                    "email": "jannes@aw-studio.de"
+                },
+                {
+                    "name": "Lennart Carstens-Behrens",
+                    "email": "lennart.carbe@gmail.com"
+                }
+            ],
+            "description": "Fjord: A Laravel CMS/Admin-Panel"
+        },
+        {
+            "name": "aw-studio/fjord-permissions",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "packages/aw-studio/fjord-permissions",
+                "reference": "b3c7d6b70e69d81ac6bb2a668819886db8e174a4"
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "type": "project",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "AwStudio\\FjordPermissions\\FjordPermissionsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Support/helpers.php"
+                ],
+                "psr-4": {
+                    "AwStudio\\FjordPermissions\\": "src"
                 }
             },
             "license": [
@@ -6664,7 +6712,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "aw-studio/fjord": 20
+        "aw-studio/fjord": 20,
+        "aw-studio/fjord-permissions": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

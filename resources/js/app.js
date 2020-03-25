@@ -1,4 +1,5 @@
 import Fjord from "fjord";
+import FjordPermissions from "fjord-permissions";
 window.moment = require("moment");
 
 require("./service/component.service");

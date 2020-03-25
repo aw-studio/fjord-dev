@@ -1,3 +1,6 @@
 [submodule "packages/aw-studio/fjord"]
 	path = packages/aw-studio/fjord
 	url = https://github.com/aw-studio/fjord.git
+[submodule "packages/aw-studio/fjord-permissions"]
+	path = packages/aw-studio/fjord-permissions
+	url = https://github.com/aw-studio/fjord-permissions.git
