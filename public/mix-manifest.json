@@ -1,4 +1,6 @@
 {
     "/fjord/js/app.js": "/fjord/js/app.js",
-    "/fjord/css/app.css": "/fjord/css/app.css"
+    "/fjord/css/app.css": "/fjord/css/app.css",
+    "/packages/aw-studio/fjord/public/js/app.js": "/packages/aw-studio/fjord/public/js/app.js",
+    "/packages/aw-studio/fjord/public/css/app.css": "/packages/aw-studio/fjord/public/css/app.css"
 }

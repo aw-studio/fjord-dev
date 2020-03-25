@@ -33,7 +33,9 @@ return [
             'icon' => '<i class="fas fa-project-diagram"></i>'
         ],
     ],
+    /*
     [
         'component' => 'example'
     ]
+    */
 ];
