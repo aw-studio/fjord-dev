@@ -51,10 +51,10 @@ return [
             'projects' => App\Models\Projects::class
         ]
     ],
-    // 'names' => [
-    //     'singular' => 'Singular',
-    //     'plural' => 'Plural'
-    // ],
+    'names' => [
+        'singular' => ucfirst(__f('models.employee')),
+        'plural' => ucfirst(__f('models.employees')),
+    ],
     'form_fields' => [
         [
             [

@@ -18,17 +18,17 @@ return [
     [
         'Crud',
         [
-            'title' => 'Departments',
+            'title' => ucfirst(__f('models.departments')),
             'link' => 'departments',
             'icon' => '<i class="fas fa-building"></i>'
         ],
         [
-            'title' => 'Employees',
+            'title' => ucfirst(__f('models.employees')),
             'link' => 'employees',
             'icon' => '<i class="fas fa-users"></i>'
         ],
         [
-            'title' => 'Projects',
+            'title' => ucfirst(__f('models.projects')),
             'link' => 'projects',
             'icon' => '<i class="fas fa-project-diagram"></i>'
         ],

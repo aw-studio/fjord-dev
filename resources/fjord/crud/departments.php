@@ -31,10 +31,10 @@ return [
             // 'employees' => App\Models\Employee::class
         ]
     ],
-    // 'names' => [
-    //     'singular' => 'Singular',
-    //     'plural' => 'Plural'
-    // ],
+    'names' => [
+        'singular' => ucfirst(__f('models.department')),
+        'plural' => ucfirst(__f('models.departments')),
+    ],
     'form_fields' => [
         [
             [

@@ -52,10 +52,10 @@ return [
             'staff.department' =>App\Models\Employee::class,
         ]
     ],
-    // 'names' => [
-    //     'singular' => 'Singular',
-    //     'plural' => 'Plural'
-    // ],
+    'names' => [
+        'singular' => ucfirst(__f('models.project')),
+        'plural' => ucfirst(__f('models.projects')),
+    ],
     'form_fields' => [
         [
             [
