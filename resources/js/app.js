@@ -1,5 +1,6 @@
 import Fjord from "fjord";
 import FjordPermissions from "fjord-permissions";
+
 window.moment = require("moment");
 
 require("./service/component.service");
@@ -10,6 +11,8 @@ Vue.use(VueGtag, {
 });
 
 const store = {};
+
+Fjord.use(FjordPermissions)
 
 new Fjord({
     store

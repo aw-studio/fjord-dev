@@ -8,14 +8,8 @@ use AwStudio\Fjord\Support\Facades\FjordRoute;
 
 class DashboardController extends Controller
 {
-    // public function myFunction(Request $request)
-    // {
-    //     //
-    // }
-
-    // public function makeDashboardMyFunctionRoute()
-    // {
-    //     FjordRoute::post("/dashboard/my-function", self::class . "@myFunction")
-    //         ->name("dashboard.myFunction");
-    // }
+    public function __invoke()
+    {
+        return view('fjord::app')->component('fj-dashboard');
+    }
 }

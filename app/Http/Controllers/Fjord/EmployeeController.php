@@ -23,7 +23,7 @@ class EmployeeController extends CrudController
     {
         fjord()->extend('employees.index')->add('globalActions', 'export-employees');
         fjord()->extend('employees.index')->add('recordActions', 'employee-record-actions');
-
+        
         parent::__construct();
     }
 }
