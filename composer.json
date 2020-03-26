@@ -10,11 +10,13 @@
     "repositories": [
         {
             "type": "path",
-            "url": "packages/aw-studio/fjord"
+            "url": "packages/aw-studio/fjord",
+            "symlink": true
         },
         {
             "type": "path",
-            "url": "packages/aw-studio/fjord-permissions"
+            "url": "packages/aw-studio/fjord-permissions",
+            "symlink": true
         }
     ],
     "require": {

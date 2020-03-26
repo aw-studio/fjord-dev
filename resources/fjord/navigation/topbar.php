@@ -8,7 +8,7 @@ return [
             'text' => 'User'
         ],
         [
-            'link' => 'fjord/permissions',
+            'link' => 'aw-studio/fjord-permissions/permissions',
             'text' => 'Permissions'
         ],
     ],
