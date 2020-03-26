@@ -9,6 +9,7 @@ use App\Exports\EmployeeExport;
 
 trait EmployeeActions
 {
+    /*
     public function addEmployeeActionsExtension()
     {
         return [
@@ -16,6 +17,7 @@ trait EmployeeActions
             'index.recordActions' => ['employee-record-actions']
         ];
     }
+    */
 
     public function makeEmployeeActionsRoute()
     {

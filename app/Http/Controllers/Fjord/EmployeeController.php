@@ -18,4 +18,12 @@ class EmployeeController extends CrudController
     public const PERMISSIONS = true;
 
     protected $modelName = 'Employee';
+
+    public function __construct()
+    {
+        fjord()->extend('employees.index')->add('globalActions', 'export-employees');
+        fjord()->extend('employees.index')->add('recordActions', 'employee-record-actions');
+
+        parent::__construct();
+    }
 }

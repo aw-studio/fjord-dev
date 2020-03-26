@@ -4,7 +4,7 @@ return [
     [
         'Nutzerverwaltung',
         [
-            'link' => 'fjord/users',
+            'link' => 'users',
             'text' => 'User'
         ],
         [
