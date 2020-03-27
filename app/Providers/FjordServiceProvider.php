@@ -23,9 +23,6 @@ class FjordServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        fjord()
-            ->package('aw-studio/fjord-permissions')
-            ->extend('permissions')
-            ->add('buttons', 'playground-permission-extension');
+
     }
 }
