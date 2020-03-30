@@ -2,7 +2,9 @@
 
 namespace App\Fjord;
 
-class Kernel
+use AwStudio\Fjord\Application\Kernel as FjordKernel;
+
+class Kernel extends FjordKernel
 {
     /**
      * The Fjord extension provided by your application.
@@ -10,6 +12,6 @@ class Kernel
      * @var array
      */
     public $extensions = [
-        \App\Fjord\Extensions\PermissionExtension::class
+       'fjord-permissions' => \App\Fjord\Extensions\PermissionExtension::class
     ];
 }

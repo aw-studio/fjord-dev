@@ -21,8 +21,8 @@ class EmployeeController extends CrudController
 
     public function __construct()
     {
-        fjord()->package('aw-studio/fjord')->extension('employees.index')->add('globalActions', 'export-employees');
-        fjord()->package('aw-studio/fjord')->extension('employees.index')->add('recordActions', 'employee-record-actions');
+        //fjord()->package('aw-studio/fjord')->extension('employees.index')->add('globalActions', 'export-employees');
+        //fjord()->package('aw-studio/fjord')->extension('employees.index')->add('recordActions', 'employee-record-actions');
 
         parent::__construct();
     }
