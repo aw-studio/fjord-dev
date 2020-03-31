@@ -13,8 +13,6 @@ class PermissionExtension extends Extension
      */
     public function extend($props)
     {
-        dd("EXTEND");
-
         return $props;
     }
 }

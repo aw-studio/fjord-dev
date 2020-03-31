@@ -15,7 +15,8 @@ return [
     [
         [
             'link' => 'collections/settings',
-            'text' =>'Settings'
+            'text' => 'Settings',
+            'permission' => 'read projects'
         ],
     ]
 ];
