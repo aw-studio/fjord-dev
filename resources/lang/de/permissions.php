@@ -3,6 +3,6 @@
 return [
     "departments" => "Abteilungen",
     "employees" => "Mitarbeiter",
-    "project_statuses" => "Project Status",
+    "project_statuses" => "Projekt Status",
     "projects" => "Projekte"
 ];

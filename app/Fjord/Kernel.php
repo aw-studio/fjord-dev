@@ -12,6 +12,6 @@ class Kernel extends FjordKernel
      * @var array
      */
     public $extensions = [
-        'fjord-permissions' => \App\Fjord\Extensions\PermissionExtension::class
+        'fj-crud-index' => \App\Fjord\Extensions\EmployeeCrudExtension::class
     ];
 }

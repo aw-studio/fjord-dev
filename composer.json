@@ -17,10 +17,16 @@
             "type": "path",
             "url": "packages/aw-studio/fjord-permissions",
             "symlink": true
+        },
+        {
+            "type": "path",
+            "url": "packages/aw-studio/eloquent-js",
+            "symlink": true
         }
     ],
     "require": {
         "php": "^7.2.5",
+        "aw-studio/eloquent-js": "@dev",
         "aw-studio/fjord": "@dev",
         "aw-studio/fjord-permissions": "@dev",
         "fideloper/proxy": "^4.2",

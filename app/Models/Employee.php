@@ -23,6 +23,11 @@ class Employee extends FjordModel implements HasMedia
     protected $appends = ['image', 'fullName'];
     protected $with = ['media'];
 
+    public function getResourceRoute()
+    {
+        return 'test/employees';
+    }
+
     /**
      * Realtions
      *
@@ -32,6 +37,7 @@ class Employee extends FjordModel implements HasMedia
     {
         return $this->belongsTo('App\Models\Department');
     }
+
     public function projects()
     {
         return $this->belongsToMany('App\Models\Project', 'staff');
@@ -81,9 +87,9 @@ class Employee extends FjordModel implements HasMedia
     {
         foreach (config('fjord.mediaconversions.default') as $key => $value) {
             $this->addMediaConversion($key)
-                  ->width($value[0])
-                  ->height($value[1])
-                  ->sharpen($value[2]);
+                ->width($value[0])
+                ->height($value[1])
+                ->sharpen($value[2]);
         }
     }
 }

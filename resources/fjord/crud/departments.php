@@ -1,7 +1,9 @@
 <?php
 
 return [
-    //'preview_route' => [Department::class, 'getRoute'],
+    'preview_route' => function ($department) {
+        return route('departments.show', $department->id);
+    },
     'index' => [
         'preview' => [
             [
@@ -49,6 +51,24 @@ return [
         ],
         [
             [
+                'id' => 'executives',
+                'type' => 'relation',
+                'model' => \App\Models\Employee::class,
+                'edit' => 'employees',
+                'many' => true,
+                'preview' => [
+                    [
+                        'type' => 'image',
+                        'key' => 'image.conversion_urls.sm'
+                    ],
+                    '{fullName}',
+                ],
+                'title' => 'Executives',
+                'hint' => 'Choose the company\'s executives.',
+                'width' => 12,
+                'button' => 'Add Executive'
+            ],
+            [
                 'id' => 'employees',
                 'type' => 'hasMany',
                 'model' => \App\Models\Employee::class,
@@ -63,6 +83,7 @@ return [
                 'hint' => 'Select Staff',
                 'width' => 12,
             ],
-        ]
+        ],
+
     ]
 ];

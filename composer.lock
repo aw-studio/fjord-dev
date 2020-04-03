@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5dd53e4d7d457ad10c2fa60236b1bd57",
+    "content-hash": "6b35cd63bb039023819241daee290159",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -122,6 +122,40 @@
                 "translation"
             ],
             "time": "2020-03-03T10:43:26+00:00"
+        },
+        {
+            "name": "aw-studio/eloquent-js",
+            "version": "dev-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/aw-studio/eloquent-js",
+                "reference": "deabc231de90c4cf81010e1baa88dc0dda53a97c"
+            },
+            "type": "laravel-project",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "AwStudio\\EloquentJs\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Support/helpers.php"
+                ],
+                "psr-4": {
+                    "AwStudio\\EloquentJs\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lennart Carstens-Behrens",
+                    "email": "lennart.carbe@gmail.com"
+                }
+            ]
         },
         {
             "name": "aw-studio/fjord",
@@ -6531,6 +6565,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "aw-studio/eloquent-js": 20,
         "aw-studio/fjord": 20,
         "aw-studio/fjord-permissions": 20
     },

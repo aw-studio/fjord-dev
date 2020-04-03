@@ -11,7 +11,7 @@ class Department extends FjordModel
     // the coresponding translation-model
     protected $fillable = ['name'];
 
-    protected $appends= ['employees_count'];
+    protected $appends = ['employees_count'];
 
 
     public function getEmployeesCountAttribute()
@@ -27,5 +27,10 @@ class Department extends FjordModel
     public function employees()
     {
         return $this->hasMany('App\Models\Employee');
+    }
+
+    public function executives()
+    {
+        return $this->hasMany(\App\Models\Employee::class);
     }
 }

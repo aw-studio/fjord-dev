@@ -1,5 +1,5 @@
 const mix = require("laravel-mix");
-const fs = require('fs');
+const fs = require("fs");
 
 /*
  |--------------------------------------------------------------------------
@@ -12,7 +12,6 @@ const fs = require('fs');
  |
  */
 
-
 /**
  |--------------------------------------------------------------------------
  | MergePackageJson
@@ -23,18 +22,18 @@ const fs = require('fs');
  */
 class MergePackageJson {
     /**
-    * The API name for the component.
-    */
+     * The API name for the component.
+     */
     name() {
-        return ['mergePackageJson', 'package'];
+        return ["mergePackageJson", "package"];
     }
 
     /**
-    * Register the component.
-    *
-    * @param {*} from
-    * @param {string} to
-    */
+     * Register the component.
+     *
+     * @param {*} from
+     * @param {string} to
+     */
     register(from, to) {
         console.log(from);
         let self = this;
@@ -45,20 +44,42 @@ class MergePackageJson {
     }
 
     onChange(from, to) {
-        let toPath = to + '/package.json'
-        let fromJson = JSON.parse(fs.readFileSync(from))
-        let toJson = JSON.parse(fs.readFileSync(toPath))
-        toJson.devDependencies = fromJson.devDependencies
-        toJson.dependencies = fromJson.dependencies
-        delete toJson.dependencies['fjord']
+        let toPath = to + "/package.json";
+        let fromJson = JSON.parse(fs.readFileSync(from));
+        let toJson = JSON.parse(fs.readFileSync(toPath));
+        toJson.devDependencies = fromJson.devDependencies;
+        toJson.dependencies = fromJson.dependencies;
+        delete toJson.dependencies["fjord"];
 
-        let spacing = 4
-        fs.writeFile(toPath, JSON.stringify(toJson, null, spacing), (err) => {});
+        let spacing = 4;
+        fs.writeFile(toPath, JSON.stringify(toJson, null, spacing), err => {});
     }
 }
 
-mix.extend('package', new MergePackageJson());
+mix.extend("package", new MergePackageJson());
 
+mix
+    // compile
+    .js("resources/js/app.js", "public/fjord/js")
+    .sass(
+        "packages/aw-studio/fjord/resources/sass/app.scss",
+        "public/fjord/css"
+    )
+    // update package
+    .copyDirectory("public/fjord", "packages/aw-studio/fjord/publish/assets")
+    .copy("public/fjord/js/app.js", "packages/aw-studio/fjord/public/js/app.js")
+    .copy(
+        "public/fjord/css/app.css",
+        "packages/aw-studio/fjord/public/css/app.css"
+    )
+    .package("package.json", "packages/aw-studio/fjord")
+    // browser sync
+    .browserSync({
+        proxy: "fjord-dev.aw",
+        notify: false
+    });
+
+// Fjord
 mix.webpackConfig({
     resolve: {
         alias: {
@@ -73,21 +94,3 @@ mix.webpackConfig({
         }
     }
 });
-
-mix
-    // compile
-    .js('resources/js/app.js', 'public/fjord/js')
-    .sass(
-        'packages/aw-studio/fjord/resources/sass/app.scss',
-        'public/fjord/css'
-    )
-    // update package
-    .copyDirectory('public/fjord', 'packages/aw-studio/fjord/publish/assets')
-    .copy('public/fjord/js/app.js', 'packages/aw-studio/fjord/public/js/app.js')
-    .copy('public/fjord/css/app.css', 'packages/aw-studio/fjord/public/css/app.css')
-    .package('package.json', 'packages/aw-studio/fjord')
-    // browser sync
-    .browserSync({
-        proxy: "fjord-dev.aw",
-        notify: false
-    });
