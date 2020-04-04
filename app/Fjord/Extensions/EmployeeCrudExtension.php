@@ -2,11 +2,23 @@
 
 namespace App\Fjord\Extensions;
 
-use AwStudio\Fjord\Application\Vue\Extension;
 use App\Models\Employee;
+use AwStudio\Fjord\Fjord\Models\FjordUser;
+use AwStudio\Fjord\Application\Vue\Extension;
 
 class EmployeeCrudExtension extends Extension
 {
+    /**
+     * Has user permission for this extension.
+     * 
+     * @var \AwStudio\Fjord\Fjord\Models\FjordUser $user
+     * @return boolean
+     */
+    public function authenticate(FjordUser $user)
+    {
+        return $user->can('read employees');
+    }
+
     /**
      * Modify props for Vue application in handle method.
      * 
@@ -15,10 +27,6 @@ class EmployeeCrudExtension extends Extension
      */
     public function handle($component)
     {
-        if (!$component->is(Employee::class)) {
-            return;
-        }
-
         $component->addGlobalAction('export-employees');
         $component->addRecordAction('employee-record-actions');
     }

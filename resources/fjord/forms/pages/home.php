@@ -14,6 +14,15 @@ return [
             'width' => 12
         ],
         [
+            'translatable' => false,
+            'id' => 'h2',
+            'type' => 'input',
+            'title' => 'Headline',
+            'placeholder' => 'Headline',
+            'hint' => 'The Headline needs to be filled',
+            'width' => 12
+        ],
+        [
             'id' => 'executives',
             'type' => 'relation',
             'model' => \App\Models\Employee::class,
