@@ -23,7 +23,7 @@ return [
     /*
      * The fully qualified class name of the media model.
      */
-    'media_model' => AwStudio\Fjord\Form\Database\Media::class,
+    'media_model' => Fjord\Form\Database\Media::class,
 
     's3' => [
         /*

@@ -3,15 +3,15 @@
 namespace App\Fjord\Extensions;
 
 use App\Models\Employee;
-use AwStudio\Fjord\Fjord\Models\FjordUser;
-use AwStudio\Fjord\Application\Vue\Extension;
+use Fjord\Fjord\Models\FjordUser;
+use Fjord\Application\Vue\Extension;
 
 class EmployeeCrudExtension extends Extension
 {
     /**
      * Has user permission for this extension.
      * 
-     * @var \AwStudio\Fjord\Fjord\Models\FjordUser $user
+     * @var \Fjord\Fjord\Models\FjordUser $user
      * @return boolean
      */
     public function authenticate(FjordUser $user)

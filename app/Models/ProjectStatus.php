@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use AwStudio\Fjord\Fjord\Models\Model as FjordModel;
+use Fjord\Fjord\Models\Model as FjordModel;
 
 class ProjectStatus extends FjordModel
 {

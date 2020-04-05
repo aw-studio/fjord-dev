@@ -41,6 +41,7 @@ return [
         [
             [
                 'type' => 'input',
+                'readonly' => true,
                 'id' => 'name',
                 'max' => 60,
                 'title' => 'Name',

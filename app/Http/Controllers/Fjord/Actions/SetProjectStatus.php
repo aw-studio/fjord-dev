@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Fjord\Actions;
 
-use AwStudio\Fjord\Support\Facades\FjordRoute;
+use Fjord\Support\Facades\FjordRoute;
 use Illuminate\Http\Request;
 
 use App\Models\Project;

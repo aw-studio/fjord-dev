@@ -4,7 +4,7 @@ return [
     [
         'Collections',
         [
-            'title' => 'Pages',
+            'title' => ucfirst(__f('fj.pages')),
             'icon' => '<i class="fas fa-file"></i>',
             'children' => [
                 [

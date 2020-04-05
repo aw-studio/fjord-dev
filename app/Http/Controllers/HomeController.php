@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use AwStudio\Fjord\Support\Facades\Form;
+use Fjord\Support\Facades\Form;
 
 class HomeController extends Controller
 {

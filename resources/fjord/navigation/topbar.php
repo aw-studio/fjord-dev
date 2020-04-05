@@ -4,12 +4,14 @@ return [
     [
         'Nutzerverwaltung',
         [
-            'link' => 'users',
-            'text' => 'User'
+            'link' => 'fjord/users',
+            'text' => 'User',
+            'permission' => 'read fjord-users'
         ],
         [
             'link' => 'aw-studio/fjord-permissions/permissions',
-            'text' => 'Permissions'
+            'text' => 'Permissions',
+            'permission' => 'read role-permissions'
         ],
     ],
     [
