@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Fjord\Crud\DepartmentController;
+
 return [
+    'controller' => DepartmentController::class,
     'preview_route' => function ($department) {
         return route('departments.show', $department->id);
     },
@@ -38,6 +41,16 @@ return [
         'plural' => ucfirst(__f('models.departments')),
     ],
     'form_fields' => [
+        [
+            'id' => 'content',
+            'type' => 'block',
+            'title' => 'Content',
+            'hint' => 'The Headline needs to be filled',
+            'width' => 12,
+            'repeatables' => [
+                'text', 'image'
+            ]
+        ],
         /*[
             
             [

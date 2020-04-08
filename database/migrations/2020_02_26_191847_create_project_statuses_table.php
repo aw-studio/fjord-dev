@@ -2,10 +2,20 @@
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Fjord\Form\Migration\MigratePermissions;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateProjectStatusesTable extends Migration
 {
+    use MigratePermissions;
+
+    /**
+     * Permissions that should be created for this crud.
+     *
+     * @var array
+     */
+    protected $permissions = [];
+
     /**
      * Run the migrations.
      *
@@ -24,7 +34,7 @@ class CreateProjectStatusesTable extends Migration
             $table->timestamps();
         });
 
-
+        $this->upPermissions();
     }
 
     /**
@@ -35,6 +45,6 @@ class CreateProjectStatusesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('project_statuses');
-
+        $this->downPermissions();
     }
 }

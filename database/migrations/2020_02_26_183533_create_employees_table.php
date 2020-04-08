@@ -2,10 +2,25 @@
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Fjord\Form\Migration\MigratePermissions;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateEmployeesTable extends Migration
 {
+    use MigratePermissions;
+
+    /**
+     * Permissions that should be created for this crud.
+     *
+     * @var array
+     */
+    protected $permissions = [
+        'create employees',
+        'read employees',
+        'update employees',
+        'delete employees',
+    ];
+
     /**
      * Run the migrations.
      *
@@ -30,7 +45,7 @@ class CreateEmployeesTable extends Migration
             $table->timestamps();
         });
 
-
+        $this->upPermissions();
     }
 
     /**
@@ -41,6 +56,6 @@ class CreateEmployeesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('employees');
-
+        $this->downPermissions();
     }
 }

@@ -44,45 +44,45 @@ class Project extends FjordModel
      *
      *
      */
-     public function scopeActive($query)
-     {
-         return $query->where('active', 1);
-     }
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
 
-     public function scopeOnTrack($query)
-     {
-         return $query->whereHas('status', function($query){
-             $query->where('id', 1);
-         });
-     }
-     public function scopeOffTrack($query)
-     {
-         return $query->whereHas('status', function($query){
-             $query->where('title', 'off track');
-         });
-     }
-     public function scopeOnHold($query)
-     {
-         return $query->whereHas('status', function($query){
-             $query->where('title', 'on hold');
-         });
-     }
-     public function scopeReady($query)
-     {
-         return $query->whereHas('status', function($query){
-             $query->where('title', 'ready');
-         });
-     }
-     public function scopeBlocked($query)
-     {
-         return $query->whereHas('status', function($query){
-             $query->where('title', 'blocked');
-         });
-     }
-     public function scopeFinished($query)
-     {
-         return $query->whereHas('status', function($query){
-             $query->where('title', 'finished');
-         });
-     }
+    public function scopeOnTrack($query)
+    {
+        return $query->whereHas('status', function ($query) {
+            $query->where('id', 1);
+        });
+    }
+    public function scopeOffTrack($query)
+    {
+        return $query->whereHas('status', function ($query) {
+            $query->where('title', 'off track');
+        });
+    }
+    public function scopeOnHold($query)
+    {
+        return $query->whereHas('status', function ($query) {
+            $query->where('title', 'on hold');
+        });
+    }
+    public function scopeReady($query)
+    {
+        return $query->whereHas('status', function ($query) {
+            $query->where('title', 'ready');
+        });
+    }
+    public function scopeBlocked($query)
+    {
+        return $query->whereHas('status', function ($query) {
+            $query->where('title', 'blocked');
+        });
+    }
+    public function scopeFinished($query)
+    {
+        return $query->whereHas('status', function ($query) {
+            $query->where('title', 'finished');
+        });
+    }
 }

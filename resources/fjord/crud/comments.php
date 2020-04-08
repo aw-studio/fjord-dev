@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Fjord\Crud\CommentController;
+
 return [
+    'controller' => CommentController::class,
     'index' => [
         'preview' => [
             [

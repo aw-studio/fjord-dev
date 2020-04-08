@@ -1,11 +1,26 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Fjord\Form\Migration\MigratePermissions;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateTagsTable extends Migration
 {
+    use MigratePermissions;
+
+    /**
+     * Permissions that should be created for this crud.
+     *
+     * @var array
+     */
+    protected $permissions = [
+        'create tags',
+        'read tags',
+        'update tags',
+        'delete tags',
+    ];
+
     /**
      * Run the migrations.
      *
@@ -26,6 +41,8 @@ class CreateTagsTable extends Migration
 
             $table->foreign('tag_id')->references('id')->on('tags');
         });
+
+        $this->upPermissions();
     }
 
     /**
@@ -37,5 +54,6 @@ class CreateTagsTable extends Migration
     {
         Schema::dropIfExists('tags');
         Schema::dropIfExists('taggables');
+        $this->downPermissions();
     }
 }

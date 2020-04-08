@@ -1,8 +1,9 @@
 <?php
 
-//use \App\Models\ProjectStatus;
+use App\Http\Controllers\Fjord\Crud\ProjectStatusController;
 
 return [
+    'controller' => ProjectStatusController::class,
     //'preview_route' => [ProjectStatus::class, 'getRoute'],
     'index' => [
         'preview' => [

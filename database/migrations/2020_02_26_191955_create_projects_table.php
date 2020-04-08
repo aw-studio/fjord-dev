@@ -2,10 +2,25 @@
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Fjord\Form\Migration\MigratePermissions;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateProjectsTable extends Migration
 {
+    use MigratePermissions;
+
+    /**
+     * Permissions that should be created for this crud.
+     *
+     * @var array
+     */
+    protected $permissions = [
+        'create projects',
+        'read projects',
+        'update projects',
+        'delete projects',
+    ];
+
     /**
      * Run the migrations.
      *
@@ -34,7 +49,7 @@ class CreateProjectsTable extends Migration
             $table->timestamps();
         });
 
-
+        $this->upPermissions();
     }
 
     /**
@@ -45,6 +60,6 @@ class CreateProjectsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('projects');
-
+        $this->downPermissions();
     }
 }

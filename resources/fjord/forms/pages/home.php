@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Controllers\Fjord\Form\Page\HomeController;
 
-
+/**
+ * Config for Page Home.
+ */
 return [
+    'controller' => HomeController::class,
     'form_fields' => [
+        /*
         [
             'translatable' => false,
             'id' => 'h1',
@@ -40,6 +45,7 @@ return [
             'width' => 12,
             'button' => 'Add Executive'
         ],
+        */
         [
             'id' => 'content_block',
             'type' => 'block',

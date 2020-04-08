@@ -19,6 +19,11 @@ class Department extends FjordModel
         return $this->employees()->count();
     }
 
+
+    public function content()
+    {
+        return $this->blocks('content');
+    }
     /**
      * Relations
      *

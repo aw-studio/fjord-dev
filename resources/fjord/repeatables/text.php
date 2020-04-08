@@ -2,7 +2,7 @@
 
 return [
     [
-        'translatable' => false,
+        'translatable' => true,
         'id' => 'text',
         'type' => 'wysiwyg',
         'title' => 'Text',

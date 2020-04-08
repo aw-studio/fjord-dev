@@ -40,8 +40,6 @@ class Install extends Command
         ]);
 
         $this->call('fjord:install');
-        $this->call('fjord:crud-permissions');
-
 
         $user = FjordUser::create([
             'name' => 'admin',

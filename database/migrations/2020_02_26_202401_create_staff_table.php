@@ -1,11 +1,21 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Fjord\Form\Migration\MigratePermissions;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateStaffTable extends Migration
 {
+    use MigratePermissions;
+
+    /**
+     * Permissions that should be created for this crud.
+     *
+     * @var array
+     */
+    protected $permissions = [];
+
     /**
      * Run the migrations.
      *
@@ -23,6 +33,8 @@ class CreateStaffTable extends Migration
 
             $table->timestamps();
         });
+
+        $this->upPermissions();
     }
 
     /**
@@ -33,5 +45,6 @@ class CreateStaffTable extends Migration
     public function down()
     {
         Schema::dropIfExists('staff');
+        $this->downPermissions();
     }
 }

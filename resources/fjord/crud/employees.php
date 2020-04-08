@@ -1,8 +1,9 @@
 <?php
 
-//use \App\Models\Employee;
+use App\Http\Controllers\Fjord\Crud\EmployeeController;
 
 return [
+    'controller' => EmployeeController::class,
     //'preview_route' => [Employee::class, 'getRoute'],
     'index' => [
         'preview' => [
@@ -48,7 +49,7 @@ return [
         // Models that should be eager-loaded
         'load' => [
             'department' => App\Models\Department::class,
-            'projects' => App\Models\Projects::class
+            'projects' => App\Models\Project::class
         ]
     ],
     'names' => [

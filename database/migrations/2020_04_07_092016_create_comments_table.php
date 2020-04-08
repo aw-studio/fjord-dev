@@ -1,11 +1,26 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Fjord\Form\Migration\MigratePermissions;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateCommentsTable extends Migration
 {
+    use MigratePermissions;
+
+    /**
+     * Permissions that should be created for this crud.
+     *
+     * @var array
+     */
+    protected $permissions = [
+        'create comments',
+        'read comments',
+        'update comments',
+        'delete comments',
+    ];
+
     /**
      * Run the migrations.
      *
@@ -20,6 +35,8 @@ class CreateCommentsTable extends Migration
             $table->string('commentable_type');
             $table->timestamps();
         });
+
+        $this->upPermissions();
     }
 
     /**
@@ -30,5 +47,6 @@ class CreateCommentsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('comments');
+        $this->downPermissions();
     }
 }

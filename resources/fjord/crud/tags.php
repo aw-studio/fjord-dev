@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Fjord\Crud\TagController;
+
 return [
+    'controller' => TagController::class,
     'index' => [
         'preview' => [
             [

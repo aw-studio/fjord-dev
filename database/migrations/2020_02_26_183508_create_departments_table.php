@@ -2,10 +2,25 @@
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Fjord\Form\Migration\MigratePermissions;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateDepartmentsTable extends Migration
 {
+    use MigratePermissions;
+
+    /**
+     * Permissions that should be created for this crud.
+     *
+     * @var array
+     */
+    protected $permissions = [
+        'create departments',
+        'read departments',
+        'update departments',
+        'delete departments',
+    ];
+
     /**
      * Run the migrations.
      *
@@ -26,7 +41,7 @@ class CreateDepartmentsTable extends Migration
             $table->timestamps();
         });
 
-
+        $this->upPermissions();
     }
 
     /**
@@ -37,6 +52,6 @@ class CreateDepartmentsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('departments');
-
+        $this->downPermissions();
     }
 }
