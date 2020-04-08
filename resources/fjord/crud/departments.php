@@ -38,10 +38,10 @@ return [
         'plural' => ucfirst(__f('models.departments')),
     ],
     'form_fields' => [
-        [
+        /*[
+            
             [
                 'type' => 'input',
-                'readonly' => true,
                 'id' => 'name',
                 'max' => 60,
                 'title' => 'Name',
@@ -49,8 +49,75 @@ return [
                 'hint' => 'The department\'s name needs to be filled',
                 'width' => 8
             ]
+            ],*/
+        [
+            [
+                'id' => 'tags_morph_to_many',
+                'type' => 'morphToMany',
+                'model' => \App\Models\Tag::class,
+                'preview' => [
+                    [
+                        'key' => '{name}',
+                        'label' => 'Tag'
+                    ],
+                ],
+                'title' => 'tags morphToMany',
+                'hint' => 'Select Staff',
+                'width' => 12,
+            ],
         ],
         [
+            [
+                'id' => 'comments_morph_many',
+                'type' => 'morphMany',
+                'readonly' => false,
+                'model' => \App\Models\Comment::class,
+                'preview' => [
+                    [
+                        'key' => '{body}',
+                        'label' => 'Text'
+                    ],
+                ],
+                'title' => 'comments_morph_many',
+                'hint' => 'Select Staff',
+                'width' => 12,
+            ],
+        ],
+        [
+            [
+                'id' => 'employees_belongs_to_many',
+                'type' => 'belongsToMany',
+                'model' => \App\Models\Employee::class,
+                'preview' => [
+                    [
+                        'key' => '{fullName}',
+                        'label' => 'Name'
+                    ],
+                ],
+                'title' => 'employees belongsToMany',
+                'hint' => 'Select Staff',
+                'width' => 12,
+            ],
+        ],
+        [
+            [
+                'id' => 'employees_relation',
+                'type' => 'relation',
+                'many' => 'true',
+                'model' => \App\Models\Employee::class,
+                'preview' => [
+                    [
+                        'key' => '{fullName}',
+                        'label' => 'Name'
+                    ],
+                ],
+                'title' => 'employees relation',
+                'hint' => 'Select Staff',
+                'width' => 12,
+            ],
+        ],
+        [
+            /*
             [
                 'id' => 'executives',
                 'type' => 'relation',
@@ -69,18 +136,18 @@ return [
                 'width' => 12,
                 'button' => 'Add Executive'
             ],
+            */
             [
-                'id' => 'employees',
+                'id' => 'employees_has_many',
                 'type' => 'hasMany',
                 'model' => \App\Models\Employee::class,
-                'foreign_key' => 'department_id',
                 'preview' => [
                     [
                         'key' => '{fullName}',
                         'label' => 'Name'
                     ],
                 ],
-                'title' => 'Staff',
+                'title' => 'employees hasMany',
                 'hint' => 'Select Staff',
                 'width' => 12,
             ],

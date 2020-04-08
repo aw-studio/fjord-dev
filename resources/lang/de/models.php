@@ -2,6 +2,9 @@
 
 return [
 
+    'comment' => 'Kommentar',
+    'comments' => 'Kommentare',
+
     'department' => 'Abteilung',
     'departments' => 'Abteilungen',
 

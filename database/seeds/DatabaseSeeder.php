@@ -18,6 +18,11 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        factory(App\Models\Comment::class, 25)->create();
+
+        factory(App\Models\Tag::class, 25)->create();
+        factory(App\Models\Taggable::class, 25)->create();
+
         factory(App\Models\Employee::class, 200)->create();
 
         $statuses = [

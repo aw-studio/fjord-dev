@@ -58,6 +58,39 @@ return [
     'form_fields' => [
         [
             [
+                'id' => 'comments_morph_one',
+                'type' => 'morphOne',
+                'model' => \App\Models\Comment::class,
+                'preview' => [
+
+                    [
+                        'key' => '{body}',
+                        'label' => 'Text'
+                    ],
+                ],
+                'title' => 'Comment morphOne',
+                'hint' => 'Select Staff',
+                'width' => 12,
+            ],
+        ],
+        [
+            [
+                'id' => 'department',
+                'type' => 'belongsTo',
+                'model' => \App\Models\Department::class,
+                'preview' => [
+                    [
+                        'key' => '{name}',
+                        'label' => 'Name'
+                    ],
+                ],
+                'title' => 'department belongsTo',
+                'hint' => 'Select Staff',
+                'width' => 12,
+            ],
+        ],
+        [
+            [
                 'type' => 'input',
                 'id' => 'first_name',
                 'title' => 'Firstname',

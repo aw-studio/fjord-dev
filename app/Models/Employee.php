@@ -43,6 +43,11 @@ class Employee extends FjordModel implements HasMedia
         return $this->belongsToMany('App\Models\Project', 'staff');
     }
 
+    public function comments_morph_one()
+    {
+        return $this->morphOne('App\Models\Comment', 'commentable');
+    }
+
     /**
      * Accessors
      *
