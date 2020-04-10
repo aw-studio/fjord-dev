@@ -7,7 +7,7 @@ return [
     'index' => [
         'preview' => [
             [
-                'key' => '{body}',
+                'value' => '{body}',
                 'label' => 'Text'
             ],
         ],

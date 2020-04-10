@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Fjord\Fjord\Models\Model as FjordModel;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Department extends FjordModel
+class Department extends FjordModel implements HasMedia
 {
+    use HasMediaTrait;
     // enter all fillable columns. translated columns must also
     // be set fillable. don't forget to also set them fillable in
     // the coresponding translation-model

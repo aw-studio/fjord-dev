@@ -17,6 +17,6 @@ class FaqController extends FormController
      */
     public function authorize(FjordUser $user, string $operation): bool
     {
-        return $user->can("{$operation} pages");
+        return $user->can("{$operation} faqs");
     }
 }

@@ -7,7 +7,7 @@ return [
     'index' => [
         'preview' => [
             [
-                'key' => '{name}',
+                'value' => '{name}',
                 'label' => 'Tag'
             ],
         ],
@@ -41,7 +41,7 @@ return [
                 'model' => \App\Models\Department::class,
                 'preview' => [
                     [
-                        'key' => '{name}',
+                        'value' => '{name}',
                         'label' => 'Name'
                     ],
                 ],

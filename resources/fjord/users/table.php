@@ -3,11 +3,11 @@
 return [
     'cols' => [
         [
-            'key' => '{name}',
+            'value' => '{name}',
             'label' => 'Name'
         ],
         [
-            'key' => '{email}',
+            'value' => '{email}',
             'label' => 'E-Mail'
         ],
     ],

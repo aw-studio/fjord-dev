@@ -7,25 +7,25 @@ return [
     'index' => [
         'preview' => [
             [
-                'key' => '{title}',
+                'value' => '{title}',
                 'label' => 'Title'
             ],
             [
-                'key' => '{manager.last_name}',
+                'value' => '{manager.last_name}',
                 'label' => 'Projectmanager'
             ],
             [
-                'key' => '{project_status_id}',
+                'sort_by' => 'project_status_id',
                 'component' => 'project-status',
                 'label' => 'Status'
             ],
             [
-                'key' => '{completion_date}',
+                'value' => '{completion_date}',
                 'component' => 'project-completion',
                 'label' => 'Days left'
             ],
             [
-                'key' => '{staff}',
+                'value' => '{staff}',
                 'component' => 'project-team',
                 'label' => 'Staff'
             ],
@@ -125,7 +125,7 @@ return [
                 'type' => 'belongsToMany',
                 'preview' => [
                     [
-                        'key' => '{fullName}',
+                        'value' => '{fullName}',
                         'label' => 'Full Name'
                     ],
                 ],

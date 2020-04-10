@@ -1,38 +1,56 @@
 <?php
 
+use App\Models\Employee;
 use App\Http\Controllers\Fjord\Crud\EmployeeController;
 
 return [
     'controller' => EmployeeController::class,
     //'preview_route' => [Employee::class, 'getRoute'],
     'index' => [
+        'query' => Employee::query()->withCount('projects'),
         'preview' => [
             [
-                'type' => 'image',
-                'key' => 'image.conversion_urls.sm'
+                'component' => 'fj-col-image',
+                'props' => [
+                    'src' => '{image.conversion_urls.sm}',
+                ],
+                'link' => false,
+                'width' => '50px',
+                'label' => 'Image',
             ],
             [
-                'key' => '{last_name}',
+                'value' => '{last_name}',
+                'sort_by' => 'last_name',
+                'link' => 'employees/{id}/edit#email',
                 'label' => 'Lastname'
             ],
             [
-                'key' => '{first_name}',
+                'value' => '{first_name}',
+                'sort_by' => 'first_name',
                 'label' => 'Firstname'
             ],
             [
-                'key' => '{department.name}',
+                'component' => 'fj-col-crud-relation',
+                'props' => [
+                    'relation' => 'department',
+                    'value' => 'name',
+                    'link' => 'departments'
+                ],
+                'link' => false,
+                'sort_by' => 'department.name',
                 'label' => 'Department'
             ],
             [
-                'key' => '{projects}',
+                'sort_by' => 'projects_count',
                 'component' => 'employee-projects',
+                'link' => 'employees/{id}/edit#projects',
                 'label' => 'Projects'
             ],
         ],
         'search' => ['last_name', 'first_name'],
         'sort_by' => [
-            'id.desc' => 'New -> Old',
-            'id.asc' => 'Old -> New',
+            'id.desc' => __f('fj.sort_new_to_old'),
+            'id.asc' => __f('fj.sort_old_to_new'),
         ],
         'sort_by_default' => 'id.desc',
         'per_page' => 20,
@@ -81,12 +99,28 @@ return [
                 'model' => \App\Models\Department::class,
                 'preview' => [
                     [
-                        'key' => '{name}',
+                        'value' => '{name}',
                         'label' => 'Name'
                     ],
                 ],
                 'title' => 'department belongsTo',
                 'hint' => 'Select Staff',
+                'width' => 12,
+            ],
+        ],
+        [
+            [
+                'id' => 'projects',
+                'model' => App\Models\Project::active(),
+                'type' => 'belongsToMany',
+                'preview' => [
+                    [
+                        'value' => '{title}',
+                        'label' => 'Title'
+                    ],
+                ],
+                'title' => 'Works on',
+                'hint' => 'Select Projects',
                 'width' => 12,
             ],
         ],
@@ -113,7 +147,10 @@ return [
                 'title' => 'Email',
                 'placeholder' => 'Email',
                 'hint' => 'The employee\'s email-address',
-                'width' => 7
+                'width' => 7,
+                'authorize' => function ($user) {
+                    return $user->can('update employees');
+                }
             ],
             [
                 'id' => 'department_id',
@@ -139,21 +176,5 @@ return [
                 'square' => false
             ],
         ],
-        [
-            [
-                'id' => 'projects',
-                'model' => App\Models\Project::active(),
-                'type' => 'belongsToMany',
-                'preview' => [
-                    [
-                        'key' => '{title}',
-                        'label' => 'Title'
-                    ],
-                ],
-                'title' => 'Works on',
-                'hint' => 'Select Projects',
-                'width' => 12,
-            ],
-        ]
     ]
 ];

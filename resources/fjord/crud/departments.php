@@ -1,5 +1,6 @@
 <?php
 
+use Fjord\Fjord\Models\FjordUser;
 use App\Http\Controllers\Fjord\Crud\DepartmentController;
 
 return [
@@ -10,13 +11,15 @@ return [
     'index' => [
         'preview' => [
             [
-                'key' => '{name}',
-                'label' => 'Department Name'
+                'value' => '<b>{name}</b>',
+                'sort_by' => 'name',
+                'label' => 'Department Name',
             ],
             [
-                'key' => '{employees_count}',
-                'label' => 'Employees'
-            ]
+                'value' => '{employees_count}',
+                'label' => 'Employees',
+            ],
+
         ],
         'search' => ['title', 'text'],
         'sort_by' => [
@@ -66,11 +69,12 @@ return [
         [
             [
                 'id' => 'tags_morph_to_many',
+                'confirm_unlink' => false,
                 'type' => 'morphToMany',
                 'model' => \App\Models\Tag::class,
                 'preview' => [
                     [
-                        'key' => '{name}',
+                        'value' => '{name}',
                         'label' => 'Tag'
                     ],
                 ],
@@ -83,7 +87,9 @@ return [
             [
                 'id' => 'comments_morph_many',
                 'type' => 'morphMany',
-                'readonly' => false,
+                'readonly' => function (FjordUser $user) {
+                    return true;
+                },
                 'model' => \App\Models\Comment::class,
                 'preview' => [
                     [
@@ -100,6 +106,7 @@ return [
             [
                 'id' => 'employees_belongs_to_many',
                 'type' => 'belongsToMany',
+                'sortable' => true,
                 'model' => \App\Models\Employee::class,
                 'preview' => [
                     [
