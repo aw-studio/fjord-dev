@@ -27,6 +27,7 @@ class Department extends FjordModel implements HasMedia
     {
         return $this->blocks('content');
     }
+
     /**
      * Relations
      *
@@ -46,7 +47,7 @@ class Department extends FjordModel implements HasMedia
     }
     public function employees_belongs_to_many()
     {
-        return $this->belongsToMany('App\Models\Employee');
+        return $this->belongsToMany('App\Models\Employee')->orderBy('order_column');
     }
 
     public function tags_morph_to_many()

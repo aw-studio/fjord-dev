@@ -93,7 +93,7 @@ return [
                 'model' => \App\Models\Comment::class,
                 'preview' => [
                     [
-                        'key' => '{body}',
+                        'value' => '{body}',
                         'label' => 'Text'
                     ],
                 ],
@@ -110,7 +110,7 @@ return [
                 'model' => \App\Models\Employee::class,
                 'preview' => [
                     [
-                        'key' => '{fullName}',
+                        'value' => '{fullName}',
                         'label' => 'Name'
                     ],
                 ],
@@ -127,7 +127,7 @@ return [
                 'model' => \App\Models\Employee::class,
                 'preview' => [
                     [
-                        'key' => '{fullName}',
+                        'value' => '{fullName}',
                         'label' => 'Name'
                     ],
                 ],
@@ -163,7 +163,7 @@ return [
                 'model' => \App\Models\Employee::class,
                 'preview' => [
                     [
-                        'key' => '{fullName}',
+                        'value' => '{fullName}',
                         'label' => 'Name'
                     ],
                 ],

@@ -7,6 +7,7 @@ use App\Http\Controllers\Fjord\Form\Collection\SettingsController;
  */
 return [
     'controller' => SettingsController::class,
+    'title' => __f('fj.settings'),
     'form_fields' => [
         [
             'translatable' => false,
