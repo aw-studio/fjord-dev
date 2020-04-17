@@ -101,6 +101,18 @@ class HomeConfig extends FormConfig
                 });
         })->cols(6)->title('Relation');
 
+        $form->card(function ($form) {
+            $form->manyRelation('many')
+                ->title('Many Relation')
+                ->model(Department::class)
+                ->preview(function (RelationTable $table) {
+                    $table->component('fj-col-image')
+                        ->src('https://miro.medium.com/max/1400/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg');
+
+                    $table->col('name');
+                });
+        })->cols(6)->title('Relation');
+
         //dd($form->toArray());
     }
 

@@ -2,12 +2,11 @@
 
 namespace App\Fjord\Config\Crud;
 
-use App\Http\Controllers\Fjord\Crud\DepartmentController;
 use Fjord\Crud\CrudForm;
-use Fjord\Vue\CrudTable;
+use Fjord\Vue\Crud\CrudTable;
 use Fjord\Crud\Config\CrudConfig;
 use Illuminate\Database\Eloquent\Builder;
-use App\Http\Controllers\Fjord\Crud\ProjectController;
+use App\Fjord\Controllers\Crud\DepartmentController;
 
 class DepartmentConfig extends CrudConfig
 {
@@ -40,14 +39,13 @@ class DepartmentConfig extends CrudConfig
      */
     public function indexQuery(Builder $query)
     {
-
         return $query;
     }
 
     /**
      * Setup index table.
      *
-     * @param \Fjord\Vue\CrudTable $table
+     * @param \Fjord\Vue\Crud\CrudTable $table
      * @return void
      */
     public function index(CrudTable $table)
@@ -77,7 +75,7 @@ class DepartmentConfig extends CrudConfig
     /**
      * Setup create and edit form.
      *
-     * @param \Fjord\Crud\CrudForm $form
+     * @param \Fjord\Crud\Crud\CrudTable $form
      * @return void
      */
     protected function form(CrudForm $form)
@@ -90,7 +88,7 @@ class DepartmentConfig extends CrudConfig
     /**
      * Main card fields.
      *
-     * @param CrudForm $form
+     * @param \Fjord\Crud\Crud\CrudTable $form
      * @return void
      */
     private function mainForm(CrudForm $form)

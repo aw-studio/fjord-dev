@@ -2,11 +2,11 @@
 
 namespace App\Fjord\Config\Crud;
 
-use Fjord\Crud\Form;
-use Fjord\Vue\CrudTable;
+use Fjord\Crud\CrudForm;
+use Fjord\Vue\Crud\CrudTable;
 use Fjord\Crud\Config\CrudConfig;
 use Illuminate\Database\Eloquent\Builder;
-use App\Http\Controllers\Fjord\Crud\ProjectController;
+use App\Fjord\Controllers\Crud\ProjectController;
 
 class ProjectConfig extends CrudConfig
 {
@@ -68,7 +68,7 @@ class ProjectConfig extends CrudConfig
     /**
      * Setup index table.
      *
-     * @param \Fjord\Vue\CrudTable $table
+     * @param \Fjord\Vue\Crud\CrudTable $table
      * @return void
      */
     public function index(CrudTable $table)
@@ -79,7 +79,8 @@ class ProjectConfig extends CrudConfig
 
         $table->component('project-status')
             ->label('Status')
-            ->sortBy('title');
+            ->sortBy('title')
+            ->small();
     }
 
     /**
@@ -98,23 +99,39 @@ class ProjectConfig extends CrudConfig
     /**
      * Setup create and edit form.
      *
-     * @param \Fjord\Crud\Form $form
+     * @param \Fjord\Crud\CrudForm $form
      * @return void
      */
-    protected function form(Form $form)
+    protected function form(CrudForm $form)
     {
         $form->card(
-            $this->mainForm($form)
-        );
+            $this->mainForm($form),
+        )->cols(12);
+
+        $form->card()->cols(12);
     }
 
-    private function mainForm(Form $form)
+
+    private function mainForm(CrudForm $form)
     {
         $form->input('title')
             ->max(60)
             ->title('Title')
             ->placeholder('Title')
             ->hint('The project\'s title')
-            ->width(8);
+            ->cols(8);
+
+        $form->select('employee_id')
+            ->title('Employee')
+            ->options(\App\Models\Employee::projectManagement()->get()->mapWithKeys(function ($item, $key) {
+                return [$item->id => $item->fullName];
+            })->toArray())
+            ->hint('Select a Projectmanager')
+            ->cols(4);
+
+        $form->wysiwyg('description')
+            ->title('Description')
+            ->hint('The project\'s description')
+            ->cols(12);
     }
 }

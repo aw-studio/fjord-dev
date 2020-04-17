@@ -57,19 +57,23 @@ class NavigationConfig extends Config
                 'title' => ucfirst(__f("models.departments")),
                 'icon' => '<i class="fas fa-building">',
             ]),
+            /*
             $nav->preset('crud.employees', [
                 'title' => ucfirst(__f("models.employees")),
                 'icon' => '<i class="fas fa-users">'
             ]),
+            */
             $nav->preset('crud.projects', [
                 'title' => ucfirst(__f("models.projects")),
                 'icon' => '<i class="fas fa-project-diagram">',
 
             ]),
+            /*
             $nav->preset('crud.articles', [
                 'title' => 'Artikel',
                 'icon' => '<i class="fas fa-project-diagram">'
             ]),
+            */
         ]);
     }
 }
