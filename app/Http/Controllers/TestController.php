@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Fjord\Config\Navigation;
+use App\Models\Article;
 
 class TestController extends Controller
 {
     public function __invoke()
     {
-        $config = fjord()->config('navigation');
+        $config = fjord()->config('test', Article::class);
+
+
 
 
         $config = Project::config();

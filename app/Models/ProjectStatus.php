@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Fjord\Fjord\Models\Model as FjordModel;
+use Fjord\Crud\Models\CrudModel;
 
-class ProjectStatus extends FjordModel
+class ProjectStatus extends CrudModel
 {
     // enter all fillable columns. translated columns must also
     // be set fillable. don't forget to also set them fillable in
     // the coresponding translation-model
     protected $fillable = ['title'];
-
 }

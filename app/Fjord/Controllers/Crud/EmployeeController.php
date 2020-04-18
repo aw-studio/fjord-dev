@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Crud\Controllers\Crud;
+namespace App\Fjord\Controllers\Crud;
 
 use App\Models\Employee;
 use Fjord\Fjord\Models\FjordUser;

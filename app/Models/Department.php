@@ -2,20 +2,19 @@
 
 namespace App\Models;
 
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Fjord\Fjord\Models\Model as FjordModel;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Fjord\Crud\Models\CrudModel;
+use Fjord\Crud\Models\Traits\HasMedia;
 
-class Department extends FjordModel implements HasMedia
+class Department extends CrudModel
 {
-    use HasMediaTrait;
+    use HasMedia;
+
     // enter all fillable columns. translated columns must also
     // be set fillable. don't forget to also set them fillable in
     // the coresponding translation-model
     protected $fillable = ['name', 'employees_relation'];
 
     protected $appends = ['employees_count'];
-
 
     public function getEmployeesCountAttribute()
     {
@@ -41,9 +40,15 @@ class Department extends FjordModel implements HasMedia
     {
         return $this->hasMany('App\Models\Employee');
     }
+
+    /**
+     * manyRelation.
+     *
+     * @return BelongsToMany
+     */
     public function employees_relation()
     {
-        return $this->formMany('App\Models\Employee');
+        return $this->manyRelation('App\Models\Employee');
     }
     public function employees_belongs_to_many()
     {

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Fjord\Fjord\Models\Model as FjordModel;
+use Fjord\Crud\Models\CrudModel;
 
-class Comment extends FjordModel
+class Comment extends CrudModel
 {
     protected $fillable = ['body', 'commentable_id', 'commentable_type'];
 

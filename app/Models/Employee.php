@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Fjord\Fjord\Models\Model as FjordModel;
+use Fjord\Crud\Models\CrudModel;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Fjord\Fjord\Models\Model as FjordModel;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Employee extends FjordModel implements HasMedia
+class Employee extends CrudModel implements HasMedia
 {
     use HasMediaTrait;
 

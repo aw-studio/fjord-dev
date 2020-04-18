@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Fjord\Fjord\Models\Model as FjordModel;
+use Fjord\Crud\Models\CrudModel;
 
-class Tag extends FjordModel
+class Tag extends CrudModel
 {
     public function departments_morphed_by_many()
     {

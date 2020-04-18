@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Fjord\Crud\Models\Model;
+use Fjord\Crud\Models\CrudModel;
 
-class Project extends Model
+class Project extends CrudModel
 {
     // enter all fillable columns. translated columns must also
     // be set fillable. don't forget to also set them fillable in

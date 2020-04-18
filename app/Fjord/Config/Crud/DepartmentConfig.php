@@ -2,6 +2,7 @@
 
 namespace App\Fjord\Config\Crud;
 
+use App\Models\Employee;
 use Fjord\Crud\CrudForm;
 use Fjord\Vue\Crud\CrudTable;
 use Fjord\Crud\Config\CrudConfig;
@@ -34,8 +35,8 @@ class DepartmentConfig extends CrudConfig
     /**
      * Initialize index query.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder $query
+     * @param Builder $query
+     * @return Builder $query
      */
     public function indexQuery(Builder $query)
     {
@@ -45,7 +46,7 @@ class DepartmentConfig extends CrudConfig
     /**
      * Setup index table.
      *
-     * @param \Fjord\Vue\Crud\CrudTable $table
+     * @param CrudTable $table
      * @return void
      */
     public function index(CrudTable $table)
@@ -67,15 +68,15 @@ class DepartmentConfig extends CrudConfig
     public function names()
     {
         return [
-            'singular' => ucfirst(__f('models.project')),
-            'plural' => ucfirst(__f('models.projects')),
+            'singular' => ucfirst(__f('models.department')),
+            'plural' => ucfirst(__f('models.departments')),
         ];
     }
 
     /**
      * Setup create and edit form.
      *
-     * @param \Fjord\Crud\Crud\CrudTable $form
+     * @param CrudTable $form
      * @return void
      */
     protected function form(CrudForm $form)
@@ -83,12 +84,21 @@ class DepartmentConfig extends CrudConfig
         $form->card(
             $this->mainForm($form)
         )->title('Main Form');
+
+        $form->card(function ($form) {
+            $form->relation('employees_belongs_to_many')
+                ->title('BelongsToMany')
+                ->model(Employee::class)
+                ->preview(function ($table) {
+                    $table->col('first_name');
+                })->sortable(true);
+        });
     }
 
     /**
      * Main card fields.
      *
-     * @param \Fjord\Crud\Crud\CrudTable $form
+     * @param CrudTable $form
      * @return void
      */
     private function mainForm(CrudForm $form)
@@ -98,6 +108,6 @@ class DepartmentConfig extends CrudConfig
             ->title('Title')
             ->placeholder('Title')
             ->hint('The project\'s title')
-            ->width(8);
+            ->cols(8);
     }
 }

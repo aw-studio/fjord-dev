@@ -4,8 +4,8 @@ namespace App\Fjord\Config\Form\Pages;
 
 use Fjord\Crud\CrudForm;
 use App\Models\Department;
-use Fjord\Vue\RelationTable;
 use Fjord\Crud\Config\FormConfig;
+use Fjord\Vue\Crud\RelationTable;
 use Fjord\Crud\Fields\Blocks\Repeatables;
 use App\Fjord\Controllers\Form\Pages\HomeController;
 
