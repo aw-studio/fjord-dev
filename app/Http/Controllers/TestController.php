@@ -11,14 +11,11 @@ class TestController extends Controller
 {
     public function __invoke()
     {
-        $config = fjord()->config('test', Article::class);
+        $config = fjord()->config('crud.comment');
+        dd($config);
+        //$config = Project::config();
 
-
-
-
-        $config = Project::config();
-
-        dd(collect($config->select('index'))->toJson());
+        dd(collect($config->get('form')));
 
         dd($config->topbar);
         $nav = (new Navigation);

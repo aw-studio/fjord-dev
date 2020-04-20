@@ -3,7 +3,7 @@
 namespace App\Fjord\Controllers\Form\Pages;
 
 use Fjord\Fjord\Models\FjordUser;
-use Fjord\Form\Controllers\FormController;
+use Fjord\Crud\Controllers\FormController;
 
 class FaqController extends FormController
 {

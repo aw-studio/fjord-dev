@@ -2,6 +2,7 @@
 
 namespace App\Fjord\Config\Crud;
 
+use App\Models\Employee;
 use Fjord\Crud\CrudForm;
 use Fjord\Vue\Crud\CrudTable;
 use Fjord\Crud\Config\CrudConfig;
@@ -11,25 +12,45 @@ use App\Fjord\Controllers\Crud\EmployeeController;
 class EmployeeConfig extends CrudConfig
 {
     /**
+     * Model class.
+     *
+     * @var string
+     */
+    public $model = Employee::class;
+
+    /**
      * Controller class.
      *
      * @var string
      */
-    protected $controller = EmployeeController::class;
+    public $controller = EmployeeController::class;
 
     /**
      * Index table search keys.
      *
      * @var array
      */
-    protected $search = ['title', 'manager.last_name'];
+    public $search = ['last_name', 'first_name'];
 
     /**
      * Index table sort by default.
      *
      * @var string
      */
-    protected $sortByDefault = 'id.desc';
+    public $sortByDefault = 'id.desc';
+
+    /**
+     * Sort by keys.
+     *
+     * @return array
+     */
+    public function sortBy()
+    {
+        return [
+            'id.desc' => __f('fj.sort_new_to_old'),
+            'id.asc' => __f('fj.sort_old_to_new'),
+        ];
+    }
 
     /**
      * Initialize index query.
@@ -40,6 +61,7 @@ class EmployeeConfig extends CrudConfig
     public function indexQuery(Builder $query)
     {
         $query->with('department');
+        $query->with('projects');
         $query->withCount('projects');
 
         return $query;
@@ -53,14 +75,13 @@ class EmployeeConfig extends CrudConfig
     public function filter()
     {
         return [
-            'Status' => [
-                "onTrack" => "on track",
-                "offTrack" => "off track",
-                "onHold" => "on hold",
-                "ready" => "ready",
-                "blocked" => "blocked",
-                "finished" => "finished"
-            ]
+            'Department' => [
+                'development' => 'Development',
+                'marketing' => 'Marketing',
+                'projectManagement' => 'Project-Management',
+                'sales' => 'Sales',
+                'humanResources' => 'Human-Resources'
+            ],
         ];
     }
 
@@ -85,6 +106,7 @@ class EmployeeConfig extends CrudConfig
 
         $table->col('Firstname')
             ->value('{first_name}')
+            ->link('crud/employees/{id}/edit#email')
             ->sortBy('first_name');
 
         $table->component('fj-col-crud-relation')
@@ -93,8 +115,16 @@ class EmployeeConfig extends CrudConfig
                 'value' => 'name',
                 'link' => 'departments'
             ])
+            // TODO: Make link work for component.
+            //->link(false)
             ->label('Department')
             ->sortBy('department.name')
+            ->small();
+
+        $table->component('employee-projects')
+            ->label('Projects')
+            ->sortBy('projects_count')
+            //->link('crud/employees/{id}/edit#projects')
             ->small();
     }
 
@@ -106,8 +136,8 @@ class EmployeeConfig extends CrudConfig
     public function names()
     {
         return [
-            'singular' => ucfirst(__f('models.project')),
-            'plural' => ucfirst(__f('models.projects')),
+            'singular' => ucfirst(__f('models.employee')),
+            'plural' => ucfirst(__f('models.employees')),
         ];
     }
 
@@ -117,36 +147,32 @@ class EmployeeConfig extends CrudConfig
      * @param \Fjord\Crud\CrudForm $form
      * @return void
      */
-    protected function form(CrudForm $form)
+    public function form(CrudForm $form)
     {
         $form->card(
             $this->mainForm($form),
-        )->cols(12);
-
-        $form->card()->cols(12);
+        )->cols(12)->title('Main');
     }
 
 
-    private function mainForm(CrudForm $form)
+    protected function mainForm(CrudForm $form)
     {
-        $form->input('title')
-            ->max(60)
-            ->title('Title')
-            ->placeholder('Title')
-            ->hint('The project\'s title')
-            ->cols(8);
+        $form->relation('department')
+            ->title('Department')
+            ->preview(function ($table) {
+                $table->col('name');
+            });
 
-        $form->select('employee_id')
-            ->title('Employee')
-            ->options(\App\Models\Employee::projectManagement()->get()->mapWithKeys(function ($item, $key) {
-                return [$item->id => $item->fullName];
-            })->toArray())
-            ->hint('Select a Projectmanager')
-            ->cols(4);
+        $form->relation('projects')
+            ->title('Works on')
+            ->preview(function ($table) {
+                $table->col('{title}');
+            });
 
-        $form->wysiwyg('description')
-            ->title('Description')
-            ->hint('The project\'s description')
-            ->cols(12);
+        $form->relation('comments_morph_one')
+            ->title('Comments morphOne')
+            ->preview(function ($table) {
+                $table->col('body');
+            });
     }
 }

@@ -2,7 +2,7 @@
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use Fjord\Form\Migration\MigratePermissions;
+use Fjord\Support\Migration\MigratePermissions;
 use Illuminate\Database\Migrations\Migration;
 
 class MakePermissionDefaults extends Migration

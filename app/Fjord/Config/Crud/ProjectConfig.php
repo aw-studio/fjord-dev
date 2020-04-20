@@ -2,6 +2,7 @@
 
 namespace App\Fjord\Config\Crud;
 
+use App\Models\Project;
 use Fjord\Crud\CrudForm;
 use Fjord\Vue\Crud\CrudTable;
 use Fjord\Crud\Config\CrudConfig;
@@ -11,25 +12,32 @@ use App\Fjord\Controllers\Crud\ProjectController;
 class ProjectConfig extends CrudConfig
 {
     /**
+     * Model class.
+     *
+     * @var string
+     */
+    public $model = Project::class;
+
+    /**
      * Controller class.
      *
      * @var string
      */
-    protected $controller = ProjectController::class;
+    public $controller = ProjectController::class;
 
     /**
      * Index table search keys.
      *
      * @var array
      */
-    protected $search = ['title', 'manager.last_name'];
+    public $search = ['title', 'manager.last_name'];
 
     /**
      * Index table sort by default.
      *
      * @var string
      */
-    protected $sortByDefault = 'id.desc';
+    public $sortByDefault = 'id.desc';
 
     /**
      * Initialize index query.
@@ -102,7 +110,7 @@ class ProjectConfig extends CrudConfig
      * @param \Fjord\Crud\CrudForm $form
      * @return void
      */
-    protected function form(CrudForm $form)
+    public function form(CrudForm $form)
     {
         $form->card(
             $this->mainForm($form),

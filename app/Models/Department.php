@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
-use Fjord\Crud\Models\CrudModel;
+use Fjord\Crud\Models\Traits\TrackEdits;
 use Fjord\Crud\Models\Traits\HasMedia;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia as HasMediaContract;
 
-class Department extends CrudModel
+class Department extends Model implements HasMediaContract
 {
-    use HasMedia;
+    use TrackEdits,
+        HasMedia;
 
     // enter all fillable columns. translated columns must also
     // be set fillable. don't forget to also set them fillable in
@@ -32,6 +35,10 @@ class Department extends CrudModel
      *
      *
      */
+    public function employee()
+    {
+        return $this->hasOne('App\Models\Employee');
+    }
     public function employees()
     {
         return $this->hasMany('App\Models\Employee');

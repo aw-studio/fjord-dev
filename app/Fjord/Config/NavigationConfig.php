@@ -3,17 +3,17 @@
 namespace App\Fjord\Config;
 
 use Fjord\Application\Navigation\Config;
-use Fjord\Application\Navigation\FjordNavigation;
+use Fjord\Application\Navigation\Navigation;
 
 class NavigationConfig extends Config
 {
     /**
      * Topbar navigation entries.
      *
-     * @param \Fjord\Application\Navigation\FjordNavigation $nav
+     * @param \Fjord\Application\Navigation\Navigation $nav
      * @return void
      */
-    protected function topbar(FjordNavigation $nav)
+    protected function topbar(Navigation $nav)
     {
         $nav->section([
             $nav->title(__f('fj.user_administration')),
@@ -32,10 +32,10 @@ class NavigationConfig extends Config
     /**
      * Main navigation entries.
      *
-     * @param \Fjord\Application\Navigation\FjordNavigation $nav
+     * @param \Fjord\Application\Navigation\Navigation $nav
      * @return void
      */
-    protected function main(FjordNavigation $nav)
+    protected function main(Navigation $nav)
     {
         $nav->section([
             $nav->group([
@@ -57,12 +57,10 @@ class NavigationConfig extends Config
                 'title' => ucfirst(__f("models.departments")),
                 'icon' => '<i class="fas fa-building">',
             ]),
-            /*
             $nav->preset('crud.employees', [
                 'title' => ucfirst(__f("models.employees")),
                 'icon' => '<i class="fas fa-users">'
             ]),
-            */
             $nav->preset('crud.projects', [
                 'title' => ucfirst(__f("models.projects")),
                 'icon' => '<i class="fas fa-project-diagram">',

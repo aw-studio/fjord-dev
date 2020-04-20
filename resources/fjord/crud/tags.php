@@ -45,7 +45,7 @@ return [
                         'label' => 'Name'
                     ],
                 ],
-                'title' => 'departments morphedByMany',
+                'title' => 'departments morphToMany',
                 'hint' => 'Select Staff',
                 'width' => 12,
             ],

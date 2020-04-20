@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-use Fjord\Crud\Models\CrudModel;
 use Spatie\MediaLibrary\Models\Media;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Fjord\Fjord\Models\Model as FjordModel;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Fjord\Crud\Models\Traits\HasMedia;
 
-class Employee extends CrudModel implements HasMedia
+use Fjord\Crud\Models\Traits\TrackEdits;
+use Spatie\MediaLibrary\HasMedia\HasMedia as HasMediaContract;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Employee extends Model implements HasMediaContract
 {
-    use HasMediaTrait;
+    use TrackEdits, HasMedia;
 
     // enter all fillable columns. translated columns must also
     // be set fillable. don't forget to also set them fillable in

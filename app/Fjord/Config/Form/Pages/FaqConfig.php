@@ -4,23 +4,26 @@ namespace App\Fjord\Config\Form\Pages;
 
 use Fjord\Crud\CrudForm;
 use Fjord\Crud\Config\FormConfig;
+use Fjord\Crud\Config\Traits\HasCrudForm;
 use App\Fjord\Controllers\Form\Pages\FaqController;
 
 class FaqConfig extends FormConfig
 {
+    use HasCrudForm;
+
     /**
      * Controller class.
      *
      * @var string
      */
-    protected $controller = FaqController::class;
+    public $controller = FaqController::class;
 
     /**
      * Form name, is used for routing.
      *
      * @var string
      */
-    protected $formName = 'faq';
+    public $formName = 'faq';
 
     /**
      * Setup create and edit form.
@@ -28,7 +31,7 @@ class FaqConfig extends FormConfig
      * @param \Fjord\Crud\CrudForm $form
      * @return void
      */
-    protected function form(CrudForm $form)
+    public function form(CrudForm $form)
     {
         //
     }

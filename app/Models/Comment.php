@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use Fjord\Crud\Models\CrudModel;
+use Illuminate\Database\Eloquent\Model;
+use Fjord\Crud\Models\Traits\TrackEdits;
 
-class Comment extends CrudModel
+class Comment extends Model
 {
+    use TrackEdits;
+
     protected $fillable = ['body', 'commentable_id', 'commentable_type'];
 
     /**

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
-use Fjord\Form\Migration\MigratePermissions;
+use Fjord\Support\Migration\MigratePermissions;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateStaffTable extends Migration

@@ -6,24 +6,27 @@ use Fjord\Crud\CrudForm;
 use App\Models\Department;
 use Fjord\Crud\Config\FormConfig;
 use Fjord\Vue\Crud\RelationTable;
+use Fjord\Crud\Config\Traits\HasCrudForm;
 use Fjord\Crud\Fields\Blocks\Repeatables;
 use App\Fjord\Controllers\Form\Pages\HomeController;
 
 class HomeConfig extends FormConfig
 {
+    use HasCrudForm;
+
     /**
      * Controller class.
      *
      * @var string
      */
-    protected $controller = HomeController::class;
+    public $controller = HomeController::class;
 
     /**
      * Form name, is used for routing.
      *
      * @var string
      */
-    protected $formName = 'home';
+    public $formName = 'home';
 
     /**
      * Setup create and edit form.
@@ -31,7 +34,7 @@ class HomeConfig extends FormConfig
      * @param \Fjord\Crud\CrudForm $form
      * @return void
      */
-    protected function form(CrudForm $form)
+    public function form(CrudForm $form)
     {
         /*
         $form->card(function ($form) {
@@ -116,7 +119,7 @@ class HomeConfig extends FormConfig
         //dd($form->toArray());
     }
 
-    private function cardBlocks($form)
+    protected function cardBlocks($form)
     {
         $form->blocks('block')
             ->title('Blocks')
@@ -125,7 +128,7 @@ class HomeConfig extends FormConfig
             });
     }
 
-    private function getRepeatables(Repeatables $rep)
+    protected function getRepeatables(Repeatables $rep)
     {
         $rep->add('text', function ($form) {
             $form->input('input')

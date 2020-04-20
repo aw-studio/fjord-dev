@@ -2,13 +2,18 @@
 
 namespace App\Models;
 
-use Fjord\Crud\Models\CrudModel;
-use Fjord\Crud\Models\Traits\HasMedia;
-use Fjord\Crud\Models\Traits\Translatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Article extends CrudModel
+use Fjord\Crud\Models\Traits\HasMedia;
+use Fjord\Crud\Models\Traits\TrackEdits;
+use Fjord\Crud\Models\Traits\Translatable;
+use Spatie\MediaLibrary\HasMedia\HasMedia as HasMediaContract;
+
+class Article extends Model implements HasMediaContract
 {
-    use HasMedia, Translatable;
+    use TrackEdits,
+        HasMedia,
+        Translatable;
 
     /**
      * Fillables.

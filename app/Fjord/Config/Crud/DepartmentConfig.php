@@ -4,6 +4,7 @@ namespace App\Fjord\Config\Crud;
 
 use App\Models\Employee;
 use Fjord\Crud\CrudForm;
+use App\Models\Department;
 use Fjord\Vue\Crud\CrudTable;
 use Fjord\Crud\Config\CrudConfig;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,25 +13,32 @@ use App\Fjord\Controllers\Crud\DepartmentController;
 class DepartmentConfig extends CrudConfig
 {
     /**
+     * Model class.
+     *
+     * @var string
+     */
+    public $model = Department::class;
+
+    /**
      * Controller class.
      *
      * @var string
      */
-    protected $controller = DepartmentController::class;
+    public $controller = DepartmentController::class;
 
     /**
      * Index table search keys.
      *
      * @var array
      */
-    protected $search = ['title', 'text'];
+    public $search = ['title', 'text'];
 
     /**
      * Index table sort by default.
      *
      * @var string
      */
-    protected $sortByDefault = 'id.desc';
+    public $sortByDefault = 'id.desc';
 
     /**
      * Initialize index query.
@@ -79,7 +87,7 @@ class DepartmentConfig extends CrudConfig
      * @param CrudTable $form
      * @return void
      */
-    protected function form(CrudForm $form)
+    public function form(CrudForm $form)
     {
         $form->card(
             $this->mainForm($form)
@@ -101,7 +109,7 @@ class DepartmentConfig extends CrudConfig
      * @param CrudTable $form
      * @return void
      */
-    private function mainForm(CrudForm $form)
+    protected function mainForm(CrudForm $form)
     {
         $form->input('name')
             ->max(60)
@@ -109,5 +117,11 @@ class DepartmentConfig extends CrudConfig
             ->placeholder('Title')
             ->hint('The project\'s title')
             ->cols(8);
+
+        $form->relation('comments_morph_many')
+            ->title('Comments morphMany')
+            ->preview(function ($table) {
+                $table->col('first_name');
+            });
     }
 }

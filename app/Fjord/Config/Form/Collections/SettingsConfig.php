@@ -2,25 +2,28 @@
 
 namespace App\Fjord\Config\Form\Collections;
 
-use App\Fjord\Controllers\Form\Collections\SettingsController;
 use Fjord\Crud\CrudForm;
 use Fjord\Crud\Config\FormConfig;
+use Fjord\Crud\Config\Traits\HasCrudForm;
+use App\Fjord\Controllers\Form\Collections\SettingsController;
 
 class SettingsConfig extends FormConfig
 {
+    use HasCrudForm;
+
     /**
      * Controller class.
      *
      * @var string
      */
-    protected $controller = SettingsController::class;
+    public $controller = SettingsController::class;
 
     /**
      * Form name, is used for routing.
      *
      * @var string
      */
-    protected $formName = 'settings';
+    public $formName = 'settings';
 
     /**
      * Setup create and edit form.
@@ -28,7 +31,7 @@ class SettingsConfig extends FormConfig
      * @param \Fjord\Crud\CrudForm $form
      * @return void
      */
-    protected function form(CrudForm $form)
+    public function form(CrudForm $form)
     {
         //
     }

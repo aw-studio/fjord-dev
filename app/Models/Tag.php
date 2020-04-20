@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
-use Fjord\Crud\Models\CrudModel;
+use Fjord\Crud\Models\Traits\HasMedia;
+use Illuminate\Database\Eloquent\Model;
+use Fjord\Crud\Models\Traits\TrackEdits;
+use Spatie\MediaLibrary\HasMedia\HasMedia as HasMediaContract;
 
-class Tag extends CrudModel
+
+class Tag extends Model
 {
+    use TrackEdits;
+
     public function departments_morphed_by_many()
     {
-        return $this->morphedByMany('App\Models\Department', 'taggable');
+        return $this->morphedByMany(\App\Models\Department::class, 'taggable')->orderBy('order');
     }
 }
