@@ -1,8 +1,9 @@
-import kebabCase from "lodash/kebabCase";
+import Vue from 'vue';
+import kebabCase from 'lodash/kebabCase';
 
 const requireComponent = require.context(
     // The relative path of the components folder
-    "../components",
+    '../components',
     // Whether or not to look in subfolders
     true,
     // The regular expression used to match base component filenames
@@ -17,9 +18,9 @@ requireComponent.keys().forEach(fileName => {
     const componentName = kebabCase(
         // Gets the file name regardless of folder depth
         fileName
-            .split("/")
+            .split('/')
             .pop()
-            .replace(/\.\w+$/, "")
+            .replace(/\.\w+$/, '')
     );
 
     // Register component globally

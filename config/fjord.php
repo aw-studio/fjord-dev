@@ -87,7 +87,7 @@ return [
 
         'locales' => [
             'en',
-            'de'
+            'de',
         ],
 
         'fallback_locale' => 'en',

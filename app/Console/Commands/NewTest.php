@@ -33,7 +33,7 @@ class NewTest extends Command
      */
     public function handle()
     {
-        //shell_exec('composer create-project --prefer-dist laravel/laravel test');
+        shell_exec('composer create-project --prefer-dist laravel/laravel test');
         $composer = json_decode(File::get(base_path('test/composer.json')), true);
         $composer['repositories'] = [
             [
@@ -51,7 +51,7 @@ class NewTest extends Command
         $commands = [
             'cd test',
             'php artisan key:generate',
-            'composer require aw-studio/fjord-permissions aw-studio/fjord:dev-{$this->branch};'
+            "composer require aw-studio/fjord-permissions aw-studio/fjord:dev-{$this->branch};"
         ];
         shell_exec(implode(';', $commands));
     }

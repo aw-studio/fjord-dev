@@ -33,6 +33,8 @@ class SettingsConfig extends FormConfig
      */
     public function form(CrudForm $form)
     {
-        //
+        $form->card(function ($form) {
+            $form->input('text')->title('Title');
+        })->cols(6);
     }
 }
