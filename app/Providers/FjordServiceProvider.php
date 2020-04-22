@@ -14,7 +14,7 @@ class FjordServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        FjordLang::addPath(resource_path('lang/'));
+        FjordLang::addPath(base_path('fjord/resources/lang/'));
     }
 
     /**

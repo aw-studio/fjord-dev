@@ -26,8 +26,7 @@
     ],
     "require": {
         "php": "^7.2.5",
-        "aw-studio/eloquent-js": "@dev",
-        "aw-studio/fjord": "@dev",
+        "aw-studio/fjord": "dev-config-architecture",
         "aw-studio/fjord-permissions": "@dev",
         "awobaz/compoships": "^1.1",
         "fideloper/proxy": "^4.2",
@@ -58,7 +57,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "FjordApp\\": "fjord/app/"
         },
         "classmap": [
             "database/seeds",

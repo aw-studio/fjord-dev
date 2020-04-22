@@ -42,7 +42,7 @@
         "collect.js": "^4.20.3",
         "cropperjs": "^1.5.6",
         "fjord": "file:vendor/aw-studio/fjord",
-        "fjord-permissions": "file:../fjord-permissions",
+        "fjord-permissions": "file:vendor/aw-studio/fjord-permissions",
         "flag-icon-css": "^3.4.6",
         "fs": "0.0.1-security",
         "highlight.js": "^9.18.1",

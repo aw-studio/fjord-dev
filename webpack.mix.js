@@ -1,16 +1,7 @@
+require('fjord/resources/js/mix.js');
+
 const mix = require('laravel-mix');
 const fs = require('fs');
-
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
 
 /**
  |--------------------------------------------------------------------------
@@ -61,39 +52,17 @@ class MergePackageJson {
 
 mix.extend('package', new MergePackageJson());
 
-mix
-    // compile
-    .js('resources/js/app.js', 'public/fjord/js')
-    .sass(
-        'packages/aw-studio/fjord/resources/sass/app.scss',
-        'public/fjord/css'
-    )
-    // update package
-    .copyDirectory('public/fjord', 'packages/aw-studio/fjord/publish/assets')
+mix.copyDirectory('public/fjord', 'packages/aw-studio/fjord/publish/assets')
     .copy('public/fjord/js/app.js', 'packages/aw-studio/fjord/public/js/app.js')
+
     .copy(
         'public/fjord/css/app.css',
         'packages/aw-studio/fjord/public/css/app.css'
     )
+
     .package('package.json', 'packages/aw-studio/fjord')
     // browser sync
     .browserSync({
         proxy: 'fjord-dev.aw',
         notify: false
     });
-
-// Fjord
-mix.webpackConfig({
-    resolve: {
-        alias: {
-            '@fj-js': path.resolve(
-                __dirname,
-                'vendor/aw-studio/fjord/resources/js/'
-            ),
-            '@fj-sass': path.resolve(
-                __dirname,
-                'vendor/aw-studio/fjord/resources/sass/'
-            )
-        }
-    }
-});

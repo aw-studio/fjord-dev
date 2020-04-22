@@ -72,7 +72,7 @@ return [
     'providers' => [
         'fjord_users' => [
             'driver' => 'eloquent',
-            'model' => Fjord\Fjord\Models\FjordUser::class,
+            'model' => Fjord\User\Models\FjordUser::class,
         ],
         'users' => [
             'driver' => 'eloquent',

@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Spatie\MediaLibrary\Models\Media;
-use Fjord\Crud\Models\Traits\HasMedia;
 
+use Fjord\Crud\Models\Traits\HasMedia;
 use Fjord\Crud\Models\Traits\TrackEdits;
+
 use Spatie\MediaLibrary\HasMedia\HasMedia as HasMediaContract;
 
 use Illuminate\Database\Eloquent\Model;
@@ -51,6 +52,11 @@ class Employee extends Model implements HasMediaContract
         return $this->morphOne('App\Models\Comment', 'commentable');
     }
 
+    public function block()
+    {
+        return $this->blocks('block');
+    }
+
     /**
      * Accessors
      *
@@ -60,6 +66,7 @@ class Employee extends Model implements HasMediaContract
     {
         return $this->getMedia('image')->first();
     }
+
     public function getFullNameAttribute()
     {
         return "{$this->last_name}, {$this->first_name} ";

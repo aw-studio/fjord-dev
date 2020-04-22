@@ -1,6 +1,6 @@
 <?php
 
-use Fjord\Fjord\Models\FjordUser;
+use Fjord\User\Models\FjordUser;
 use App\Http\Controllers\Fjord\Crud\DepartmentController;
 
 return [

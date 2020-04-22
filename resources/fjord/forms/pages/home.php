@@ -1,6 +1,6 @@
 <?php
 
-use Fjord\Fjord\Models\FjordUser;
+use Fjord\User\Models\FjordUser;
 use Fjord\Support\Facades\Package;
 use App\Http\Controllers\Fjord\Form\Page\HomeController;
 

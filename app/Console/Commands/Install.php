@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
-use Fjord\Fjord\Models\FjordUser;
+use Fjord\User\Models\FjordUser;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
