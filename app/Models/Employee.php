@@ -24,7 +24,9 @@ class Employee extends Model implements HasMediaContract
         'email',
         'department_id'
     ];
+
     protected $appends = ['image', 'fullName'];
+
     protected $with = ['media'];
 
     public function getResourceRoute()

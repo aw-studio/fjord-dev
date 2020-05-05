@@ -13,8 +13,12 @@ class NavigationConfig extends Config
      * @param \Fjord\Application\Navigation\Navigation $nav
      * @return void
      */
-    protected function topbar(Navigation $nav)
+    public function topbar(Navigation $nav)
     {
+        $nav->section([
+            $nav->preset('profile'),
+        ]);
+
         $nav->section([
             $nav->title(__f('fj.user_administration')),
 
@@ -24,7 +28,8 @@ class NavigationConfig extends Config
 
         $nav->section([
             $nav->preset('collections.settings', [
-                'title' => __f('fj.settings')
+                'title' => __f('fj.settings'),
+                'icon' => fa('cog')
             ])
         ]);
     }
@@ -35,15 +40,19 @@ class NavigationConfig extends Config
      * @param \Fjord\Application\Navigation\Navigation $nav
      * @return void
      */
-    protected function main(Navigation $nav)
+    public function main(Navigation $nav)
     {
         $nav->section([
+            $nav->title('Pages'),
             $nav->group([
                 'title' => 'Pages',
                 'icon' => '<i class="fas fa-file"></i>',
             ], [
                 $nav->preset('pages.home', [
                     'icon' => '<i class="fas fa-home">'
+                ]),
+                $nav->preset('pages.test', [
+                    'icon' => fa('file-alt')
                 ]),
                 $nav->preset('pages.faq', [
                     'icon' => '<i class="fas fa-home">'
@@ -59,19 +68,13 @@ class NavigationConfig extends Config
             ]),
             $nav->preset('crud.employees', [
                 'title' => ucfirst(__f("models.employees")),
-                'icon' => '<i class="fas fa-users">'
+                'icon' => fa('users')
             ]),
             $nav->preset('crud.projects', [
                 'title' => ucfirst(__f("models.projects")),
                 'icon' => '<i class="fas fa-project-diagram">',
 
             ]),
-            /*
-            $nav->preset('crud.articles', [
-                'title' => 'Artikel',
-                'icon' => '<i class="fas fa-project-diagram">'
-            ]),
-            */
         ]);
     }
 }

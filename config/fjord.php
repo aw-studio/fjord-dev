@@ -14,49 +14,6 @@ return [
 
     'route_prefix' => 'admin',
 
-
-    /*
-    |--------------------------------------------------------------------------
-    | Fjord Resource-Path
-    |--------------------------------------------------------------------------
-    |
-    | Set the resource-path in which the fjord form-settings are stored.
-    |
-    | default: resources/fjord
-    |
-    */
-
-
-    'resource_path' => 'fjord',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Fjord Navigation-Path
-    |--------------------------------------------------------------------------
-    |
-    | Set the path in the fjord-resource-directory in which the fjord
-    | navigations are stored.
-    |
-    | default: resources/fjord/navigation
-    |
-    */
-
-    'navigation_path' => 'navigation',
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Fjord Navigation-Layout
-    |--------------------------------------------------------------------------
-    |
-    | With this option you may set the fjord navigation layout.
-    |
-    | Supported: "horizontal", "vertical"
-    |
-    */
-
-    'layout' => env('FJORD_LAYOUT', 'vertical'),
-
     /*
     |--------------------------------------------------------------------------
     | Fjord Default-Route
@@ -70,14 +27,25 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Fjord Login
+    |--------------------------------------------------------------------------
+    |
+    | Set login.username to true to allow logging in using username or email.
+    |
+    */
+
+    'login' => [
+        'username' => false
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Fjord Translatable
     |--------------------------------------------------------------------------
     |
     | Set the default route a user is redirected to after logging in.
     |
     */
-
-
 
     'translatable' => [
 
@@ -107,10 +75,13 @@ return [
     */
 
     'assets' => [
-        // Set path to the app.js file.
-        'js' => null,
+        // Set path to the root app.js and app.css file.
+        'app' => [
+            'js' => null,
+            'css' => null,
+        ],
         'css' => [
-            // Put path to css files that should be included here...
+            // Include more css files here.
         ],
     ],
 
@@ -139,28 +110,6 @@ return [
     ],
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | Fjord Forms
-    |--------------------------------------------------------------------------
-    |
-    | You may add as many form-types as you like to the already existing 'pages'
-    | and 'settings' forms.
-    |
-    */
-
-    'forms' => [
-        'pages' => [
-            // Should Pages be translatable by default.
-            'translatable' => true,
-            'route_prefix' => 'pages'
-        ],
-        'settings' => [
-            'translatable' => false,
-        ],
-        'collections' => []
-    ],
-
 
     /*
     |--------------------------------------------------------------------------
@@ -177,15 +126,4 @@ return [
             'default_device' => 'desktop'
         ]
     ],
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Roles & Permissions
-    |--------------------------------------------------------------------------
-    |
-    |
-    */
-
-    'roles_permissions' => true
 ];

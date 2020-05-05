@@ -1,15 +1,16 @@
 <template>
     <b-col :cols="field.cols" class="text-secondary">
-        Ihre Bestellnummer wird angezeigt als #<b>{{ model }}</b
-        >1001, #<b>{{ model }}</b
-        >1002, #<b>{{ model }}</b
-        >1003...
+        Input: {{ model[locale].text }}
     </b-col>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
     name: 'Test',
-    props: ['model', 'field']
+    props: ['model', 'field'],
+    computed: {
+        ...mapGetters(['fallback_locale', 'locale'])
+    }
 };
 </script>

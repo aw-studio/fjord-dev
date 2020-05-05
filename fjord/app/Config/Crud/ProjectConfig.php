@@ -40,6 +40,13 @@ class ProjectConfig extends CrudConfig
     public $sortByDefault = 'id.desc';
 
     /**
+     * Items per page.
+     *
+     * @var integer
+     */
+    public $perPage = 10;
+
+    /**
      * Initialize index query.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
@@ -112,13 +119,10 @@ class ProjectConfig extends CrudConfig
      */
     public function form(CrudForm $form)
     {
-        $form->card(
-            $this->mainForm($form),
-        )->cols(12);
-
-        $form->card()->cols(12);
+        $form->card(function ($form) {
+            $this->mainForm($form);
+        })->cols(12);
     }
-
 
     private function mainForm(CrudForm $form)
     {

@@ -27,7 +27,7 @@ class UserExtension extends Extension
     public function handle($component)
     {
         $component->index(function ($table) {
-            $table->col('Test')->value('TEst');
+            //$table->col('Test')->value('TEst');
         });
     }
 }

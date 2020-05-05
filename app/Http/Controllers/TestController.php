@@ -7,27 +7,17 @@ use Illuminate\Http\Request;
 use FjordApp\Config\Navigation;
 use App\Models\Article;
 use App\Models\Employee;
+use Fjord\Application\Translation\i18nGenerator;
 
 class TestController extends Controller
 {
     public function __invoke()
     {
+        $component = component('fj-crud-index');
 
-        $query = Employee::with('department')
-            ->with('projects')
-            ->withCount('projects');
+        $component->prop('test', 1);
+        $component->slot('abc', component('fj-crud-index'));
 
-        dd((new Employee())->department()->getRelated());
-
-
-        $config = fjord()->config('navigation');
-        dd($config->topbar);
-        //$config = Project::config();
-
-        dd(collect($config->get('form')));
-
-        dd($config->topbar);
-        $nav = (new Navigation);
-        dump($nav->all());
+        dd($component->toArray());
     }
 }

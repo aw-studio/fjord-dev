@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'comment' => 'Kommentar',
     'comments' => 'Kommentare',
 
@@ -16,5 +15,4 @@ return [
 
     'test' => 'test',
     'tests' => 'tests',
-
 ];

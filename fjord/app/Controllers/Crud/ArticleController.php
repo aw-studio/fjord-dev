@@ -3,6 +3,7 @@
 namespace FjordApp\Controllers\Crud;
 
 use Fjord\User\Models\FjordUser;
+use Illuminate\Database\Eloquent\Builder;
 use Fjord\Crud\Controllers\CrudController;
 
 class ArticleController extends CrudController
@@ -25,5 +26,15 @@ class ArticleController extends CrudController
     public function authorize(FjordUser $user, string $operation): bool
     {
         return $user->can("{$operation} articles");
+    }
+
+    /**
+     * Initial query.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query(): Builder
+    {
+        return $this->model::query();
     }
 }

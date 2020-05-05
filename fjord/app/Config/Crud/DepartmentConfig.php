@@ -2,9 +2,9 @@
 
 namespace FjordApp\Config\Crud;
 
-use App\Models\Employee;
 use Fjord\Crud\CrudForm;
 use App\Models\Department;
+use App\Models\Employee;
 use Fjord\Vue\Crud\CrudTable;
 use Fjord\Crud\Config\CrudConfig;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,6 +12,7 @@ use FjordApp\Controllers\Crud\DepartmentController;
 
 class DepartmentConfig extends CrudConfig
 {
+
     /**
      * Model class.
      *
@@ -89,6 +90,7 @@ class DepartmentConfig extends CrudConfig
      */
     public function form(CrudForm $form)
     {
+        /*
         $form->info('Firmenadresse')
             ->cols(4)
             ->text('Diese Adresse erscheint auf Ihren Rechnungen. In Ihren Versandeinstellungen können Sie die Adresse bearbeiten, die für die Berechnung der Versandtarife verwendet wird.')
@@ -101,31 +103,44 @@ class DepartmentConfig extends CrudConfig
                 ->cols(12)
                 ->text('Bestellnummern beginnen standardmäßig bei #1001. Sie können die Bestellnummer selbst nicht ändern. Sie können jedoch ein Präfix oder Suffix hinzufügen, um IDs wie "EN1001" oder "1001-A" zu erstellen.');
 
-            $form->input('name')
-                ->title('Prafix')
-                ->prepend('#')
-                ->cols(6);
+            $form->input('length')
+                ->title('Length')
+                ->type('number')
+                ->placeholder('The length in cm')
+                ->hint('Enter the length in cm.')
+                ->append('cm')
+                ->cols(12);
 
             $form->input('suffix')
                 ->title('Suffix')
                 ->cols(6);
 
             $form->component('test')->model('prefix')->cols(12);
-        })->cols(8);
+        })->cols(8)->class('md-2');
 
         $form->line();
-
-
-
-
+        */
 
         $form->card(function ($form) {
-            $form->relation('employees_belongs_to_many')
-                ->title('BelongsToMany')
+            $form->relation('employees')
+                ->title('Employees')
                 ->sortable()
                 ->preview(function ($table) {
                     $table->col('first_name');
                 });
+
+            /*
+            $form->blocks('block')
+                ->title('Blocks')
+                ->repeatables(function ($rep) {
+                    $rep->add('one relation', function ($form) {
+                        $form->oneRelation('employee')->model(Employee::class);
+                    });
+                    $rep->add('many relation', function ($form) {
+                        $form->manyRelation('employees')->model(Employee::class);
+                    });
+                });
+                */
         })->title('BelongsToMany')->class('');
     }
 

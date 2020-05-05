@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\Models\Media;
-use Spatie\MediaLibrary\HasMedia\HasMedia as HasMediaContract;
 use Fjord\Crud\Models\Traits\HasMedia;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Illuminate\Database\Eloquent\Model;
+use Fjord\Crud\Models\Traits\TrackEdits;
 use Fjord\Crud\Models\Traits\Translatable;
+use Spatie\MediaLibrary\HasMedia\HasMedia as HasMediaContract;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 
 class Test extends Model implements HasMediaContract, TranslatableContract
 {
-    use HasMedia, Translatable;
+    use TrackEdits, HasMedia, Translatable;
 
     /**
      * Setup Model:

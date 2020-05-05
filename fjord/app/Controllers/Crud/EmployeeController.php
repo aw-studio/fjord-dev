@@ -4,17 +4,16 @@ namespace FjordApp\Controllers\Crud;
 
 use App\Models\Employee;
 use Fjord\User\Models\FjordUser;
+use Illuminate\Database\Eloquent\Builder;
 use Fjord\Crud\Controllers\CrudController;
 
 class EmployeeController extends CrudController
 {
-    /*
-    use CrudIndexDeleteAll,
-        CrudShowForm,
-        CrudShowPreview,
-        Actions\EmployeeActions;
-    */
-
+    /**
+     * Model class.
+     *
+     * @var string
+     */
     protected $model = Employee::class;
 
     /**
@@ -28,5 +27,15 @@ class EmployeeController extends CrudController
     public function authorize(FjordUser $user, string $operation): bool
     {
         return $user->can("{$operation} employees");
+    }
+
+    /**
+     * Initial query.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query(): Builder
+    {
+        return $this->model::query();
     }
 }

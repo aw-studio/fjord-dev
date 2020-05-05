@@ -12,6 +12,6 @@ class Kernel extends FjordKernel
      * @var array
      */
     public $extensions = [
-        'fj-users' => \FjordApp\Extensions\UserExtension::class
+        'fj-users' => \FjordApp\Extensions\UserExtension::class,
     ];
 }

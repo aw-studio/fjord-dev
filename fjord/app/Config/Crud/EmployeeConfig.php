@@ -5,6 +5,7 @@ namespace FjordApp\Config\Crud;
 use App\Models\Employee;
 use Fjord\Crud\CrudForm;
 use Fjord\Vue\Crud\CrudTable;
+use Fjord\Support\Facades\Fjord;
 use Fjord\Crud\Config\CrudConfig;
 use Fjord\Crud\Fields\Blocks\Repeatables;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,6 +13,20 @@ use FjordApp\Controllers\Crud\EmployeeController;
 
 class EmployeeConfig extends CrudConfig
 {
+    /**
+     * Is index table sortable.
+     *
+     * @var boolean
+     */
+    public $sortable = true;
+
+    /**
+     * Order column for model.
+     *
+     * @var string
+     */
+    public $orderColumn = 'order_column';
+
     /**
      * Model class.
      *
@@ -38,7 +53,18 @@ class EmployeeConfig extends CrudConfig
      *
      * @var string
      */
-    public $sortByDefault = 'id.desc';
+    public $sortByDefault = 'order_column.desc';
+
+    /**
+     * Preview route.
+     *
+     * @param Employee $employee
+     * @return string
+     */
+    public function previewRoute(Employee $employee)
+    {
+        return route('home');
+    }
 
     /**
      * Sort by keys.
@@ -50,6 +76,8 @@ class EmployeeConfig extends CrudConfig
         return [
             'id.desc' => __f('fj.sort_new_to_old'),
             'id.asc' => __f('fj.sort_old_to_new'),
+            'email.desc' => 'Email absteigend',
+            'email.asc' => 'Email aufsteigend',
         ];
     }
 
@@ -87,6 +115,18 @@ class EmployeeConfig extends CrudConfig
     }
 
     /**
+     * Index component.
+     *
+     * @param string $component
+     * @return void
+     */
+    public function indexComponent($component)
+    {
+        $component->slot('indexControls', 'fj-test');
+        //$component->slot('navControls', 'fj-test');
+    }
+
+    /**
      * Setup index table.
      *
      * @param \Fjord\Vue\Crud\CrudTable $table
@@ -94,6 +134,11 @@ class EmployeeConfig extends CrudConfig
      */
     public function index(CrudTable $table)
     {
+        $table->col('Id')
+            ->value('{id}')
+            ->sortBy('id')
+            ->small();
+
         $table->component('fj-col-image')
             ->src('{image.conversion_urls.sm}')
             ->maxWidth('50px')
@@ -109,13 +154,17 @@ class EmployeeConfig extends CrudConfig
             ->link('crud/employees/{id}/edit#email')
             ->sortBy('first_name');
 
+        $table->col('E-Mail')
+            ->value('{email}')
+            ->sortBy('email');
+
+
         $table->component('fj-col-crud-relation')
-            ->props([
-                'relation' => 'department',
+            ->bind([
+                'related' => 'department',
                 'value' => 'name',
-                'link' => fjord()->config('crud.department')->route_prefix
+                'route_prefix' => Fjord::config('crud.department')->route_prefix
             ])
-            ->link(false)
             ->label('Department')
             ->sortBy('department.name');
 
@@ -147,9 +196,15 @@ class EmployeeConfig extends CrudConfig
      */
     public function form(CrudForm $form)
     {
-        $form->card(
-            $this->cardBlocks($form),
-        )->cols(12)->title('Main');
+        $form->card(function ($form) {
+            $form->relation('comments_morph_one')
+                ->title('comments_morph_one')
+                ->preview(function ($table) {
+                    $table->col('body');
+                });
+
+            //$this->cardBlocks($form);
+        })->cols(12)->title('Main');
     }
 
     protected function cardBlocks($form)
@@ -163,10 +218,44 @@ class EmployeeConfig extends CrudConfig
 
     protected function getRepeatables(Repeatables $rep)
     {
-        $rep->add('text', function ($form) {
+        $rep->add('text', function ($form, $preview) {
+            $preview->col('{input}');
+
             $form->input('input')
                 ->title('Block input')
                 ->cols(6);
+
+            $form->wysiwyg('text')
+                ->translatable()
+                ->title('Block text')
+                ->cols(6);
+        });
+
+
+
+
+        $rep->add('employee', function ($form, $preview) {
+            $preview->col('Employees');
+
+            $form->manyRelation('employees')
+                ->model(Employee::class)
+                ->title('Mitarbeiter')
+                ->preview(function ($table) {
+                    $table->col('first_name');
+                })
+                ->cols(6);
+        });
+
+        $rep->add('image', function ($form, $preview) {
+            $preview->col('Images');
+            $form->image('images') // images is the corresponding media collection.
+                ->translatable()
+                ->title('Images')
+                ->hint('Image Collection.')
+                ->maxFiles(5)
+                ->crop(true) // Should the image be cropped before upload.
+                ->ratio(16 / 9) // Crop ratio.
+                ->square();
         });
     }
 

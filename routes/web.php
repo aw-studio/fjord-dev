@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/test', 'TestController')->name('test');
 Route::get('/', 'HomeController')->name('home');
 Route::resource('employees', 'EmployeeController')->only(['index', 'show']);

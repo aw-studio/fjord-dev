@@ -20,7 +20,6 @@ export default {
     },
     computed: {
         value() {
-            console.log(this.item);
             return this.item.projects_count;
         },
         variant() {

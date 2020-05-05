@@ -26,7 +26,6 @@ class MergePackageJson {
      * @param {string} to
      */
     register(from, to) {
-        console.log(from);
         let self = this;
         self.onChange(from, to);
         fs.watchFile(from, (curr, prev) => {
@@ -53,13 +52,15 @@ class MergePackageJson {
 mix.extend('package', new MergePackageJson());
 
 mix.copyDirectory('public/fjord', 'packages/aw-studio/fjord/publish/assets')
-    .copy('public/fjord/js/app.js', 'packages/aw-studio/fjord/public/js/app.js')
-
     .copy(
         'public/fjord/css/app.css',
         'packages/aw-studio/fjord/public/css/app.css'
     )
-
+    .copy('public/fjord/js/app.js', 'packages/aw-studio/fjord/public/js/app.js')
+    .copy(
+        'public/fjord/css/app.css',
+        'packages/aw-studio/fjord/public/css/app.css'
+    )
     .package('package.json', 'packages/aw-studio/fjord')
     // browser sync
     .browserSync({

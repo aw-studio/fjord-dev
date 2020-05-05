@@ -6,6 +6,7 @@ namespace FjordApp\Controllers\Crud;
 
 use App\Models\Department;
 use Fjord\User\Models\FjordUser;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Validator;
 use Fjord\Crud\Controllers\CrudController;
 use Fjord\Crud\Requests\CrudUpdateRequest;
@@ -32,11 +33,13 @@ class DepartmentController extends CrudController
         return $user->can("{$operation} departments");
     }
 
-    public function validateUpdate(CrudUpdateRequest $request)
+    /**
+     * Initial query.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query(): Builder
     {
-        Validator::make($request->all(), [
-            'title' => 'required|unique:posts|max:255',
-            'body' => 'required',
-        ]);
+        return $this->model::query();
     }
 }

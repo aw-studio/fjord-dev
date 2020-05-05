@@ -24,10 +24,14 @@ class Department extends Model implements HasMediaContract
         return $this->employees()->count();
     }
 
-
     public function content()
     {
         return $this->blocks('content');
+    }
+
+    public function block()
+    {
+        return $this->blocks('block');
     }
 
     /**
@@ -41,7 +45,7 @@ class Department extends Model implements HasMediaContract
     }
     public function employees()
     {
-        return $this->hasMany('App\Models\Employee');
+        return $this->hasMany('App\Models\Employee')->orderBy('order_column');
     }
     public function employees_has_many()
     {
@@ -55,7 +59,7 @@ class Department extends Model implements HasMediaContract
      */
     public function employees_relation()
     {
-        return $this->manyRelation('App\Models\Employee');
+        return $this->manyRelation('App\Models\Employee', 'employees_relation');
     }
     public function employees_belongs_to_many()
     {
