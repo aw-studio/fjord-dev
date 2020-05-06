@@ -27,6 +27,8 @@ class EmployeeConfig extends CrudConfig
      */
     public $orderColumn = 'order_column';
 
+    public $expandIndexContainer = true;
+
     /**
      * Model class.
      *

@@ -56,11 +56,10 @@ class HomeConfig extends FormConfig
             $form->image('image')
                 ->title('Image')
                 ->maxFiles(10)
-                //->hint('The first image is the preview image.')
+                //->firstBig()
+                ->hint('The first image is the preview image.')
                 ->cols(12);
         })->cols(12)->class('mb-2');
-
-        $form->line()->prop('class', 'mb-2');
 
         $form->card(function ($form) {
             $this->blocks($form);
@@ -90,16 +89,20 @@ class HomeConfig extends FormConfig
      */
     protected function repeatables(Repeatables $rep)
     {
-        $rep->add('text', function ($form) {
+        $rep->add('text', function ($form, $preview) {
+            $preview->col('input');
+
             $form->input('input')
                 ->title('Titel')
                 ->cols(6);
         });
 
-        $rep->add('image', function ($form) {
+        $rep->add('image', function ($form, $preview) {
+            $preview->col('Bild');
+
             $form->image('image')
                 ->title('Image')
-                ->cols(6);
+                ->cols(12);
         });
     }
 }
