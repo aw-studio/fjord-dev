@@ -12,7 +12,7 @@ class UserIndexConfig extends IndexConfig
      *
      * @var array
      */
-    public $search = ['name', 'email'];
+    public $search = ['username', 'first_name', 'last_name', 'email'];
 
     /**
      * Index table sort by default.
@@ -30,7 +30,7 @@ class UserIndexConfig extends IndexConfig
     public function index(Table $table)
     {
         $table->col()
-            ->value('name')
+            ->value('{first_name} {last_name}')
             ->label('Name');
 
         $table->col()

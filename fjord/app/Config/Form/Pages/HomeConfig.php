@@ -36,61 +36,28 @@ class HomeConfig extends FormConfig
      */
     public function form(CrudForm $form)
     {
-        $form->info('Firmenadresse')
-            ->cols(4)
-            ->text('Neuer abstazu')
-            ->text('Diese Adresse erscheint auf Ihren Rechnungen. In Ihren Versandeinstellungen können Sie die Adresse bearbeiten, die für die Berechnung der Versandtarife verwendet wird.')
-            ->text('Ihr Hauptgeschäftsstandort kann beeinflussen, welche Apps in Ihrem Shop verwendet werden können. <a href="#">Weitere Informationen über die Kompatibilität von Apps</a>');
-
         $form->card(function ($form) {
 
-            /*
-            $form->boolean('active')
-                ->title('Live')
-                ->hint('Put the site online.')
-                ->cols(3);
-
-            $form->checkboxes('fruits')
-                ->title('Fruits')
-                ->options([
-                    'orange' => 'Orange',
-                    'apple' => 'Apple',
-                    'pineapple' => 'Pineapple',
-                    'grape' => 'Grape',
-                ])
-                ->hint('Select your fruits.')
-                ->cols(6);
-
-            $form->info('FORMAT DER BESTELLNUMMER BEARBEITEN (OPTIONAL)')
-                ->cols(12)
-                ->text('Bestellnummern beginnen standardmäßig bei #1001. Sie können die Bestellnummer selbst nicht ändern. Sie können jedoch ein Präfix oder Suffix hinzufügen, um IDs wie "EN1001" oder "1001-A" zu erstellen.');
-                */
-            $form->input('prefix')
-                ->title('Prafix')
-                ->prepend('#')
-                ->cols(6);
-
-            $form->input('suffix')
+            $form->input('headline')
+                ->title('Headline')
                 ->translatable()
-                ->title('Suffix')
-                ->cols(6);
-            return;
+                ->cols(12);
+        })->cols(12)->class('mb-5');
 
-            $form->select('select')
-                ->title('Select')
-                ->options([
-                    'f' => 'Frau',
-                    'm' => 'Mann',
-                ])
-                ->cols(6);
-        })->cols(8)->class('mb-2');
-
-        $form->line()->prop('class', 'mb-2');
+        $form->card(function ($form) {
+            $form->icon('icon')
+                ->title('Icon')
+                ->search()
+                ->hint('Choose your icon.')
+                ->cols(2);
+        })->cols(12);
 
         $form->card(function ($form) {
             $form->image('image')
                 ->title('Image')
-                ->cols(6);
+                ->maxFiles(10)
+                //->hint('The first image is the preview image.')
+                ->cols(12);
         })->cols(12)->class('mb-2');
 
         $form->line()->prop('class', 'mb-2');

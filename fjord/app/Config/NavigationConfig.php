@@ -61,7 +61,7 @@ class NavigationConfig extends Config
         ]);
 
         $nav->section([
-            $nav->title(__f('fj.user_administration')),
+            $nav->title('Models'),
             $nav->preset('crud.departments', [
                 'title' => ucfirst(__f("models.departments")),
                 'icon' => '<i class="fas fa-building">',

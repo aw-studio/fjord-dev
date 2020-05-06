@@ -50,17 +50,14 @@ class ProfileSettingsConfig
             $form->input('email')
                 ->cols(6)
                 ->title('E-Mail');
-        })->cols(8)->class('mb-2');
-        $form->line()->prop('class', 'mb-2');
+        })->cols(8)->class('mb-5');
 
         if (config('fjord.translatable.translatable')) {
             $form->info(ucwords(__f('base.language')))->cols(4)
                 ->text(__f('profile.messages.language'));
             $form->card(function ($form) {
                 $form->component('fj-locales');
-            })->cols(8)->class('mb-2');
-
-            $form->line()->prop('class', 'mb-2');
+            })->cols(8)->class('mb-5');
         }
 
         $form->info(ucwords(__f('base.security')))->cols(4);

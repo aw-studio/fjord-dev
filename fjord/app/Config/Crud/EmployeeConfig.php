@@ -197,97 +197,11 @@ class EmployeeConfig extends CrudConfig
     public function form(CrudForm $form)
     {
         $form->card(function ($form) {
-            $form->relation('comments_morph_one')
-                ->title('comments_morph_one')
-                ->preview(function ($table) {
-                    $table->col('body');
-                });
 
-            //$this->cardBlocks($form);
+            $form->input('first_name')->title('Firstname')->cols(6);
+            $form->input('last_name')->title('Lastname')->cols(6);
+
+            $form->input('email')->title('E-mail')->cols(6);
         })->cols(12)->title('Main');
-    }
-
-    protected function cardBlocks($form)
-    {
-        $form->blocks('block')
-            ->title('Blocks')
-            ->repeatables(function ($rep) {
-                $this->getRepeatables($rep);
-            });
-    }
-
-    protected function getRepeatables(Repeatables $rep)
-    {
-        $rep->add('text', function ($form, $preview) {
-            $preview->col('{input}');
-
-            $form->input('input')
-                ->title('Block input')
-                ->cols(6);
-
-            $form->wysiwyg('text')
-                ->translatable()
-                ->title('Block text')
-                ->cols(6);
-        });
-
-
-
-
-        $rep->add('employee', function ($form, $preview) {
-            $preview->col('Employees');
-
-            $form->manyRelation('employees')
-                ->model(Employee::class)
-                ->title('Mitarbeiter')
-                ->preview(function ($table) {
-                    $table->col('first_name');
-                })
-                ->cols(6);
-        });
-
-        $rep->add('image', function ($form, $preview) {
-            $preview->col('Images');
-            $form->image('images') // images is the corresponding media collection.
-                ->translatable()
-                ->title('Images')
-                ->hint('Image Collection.')
-                ->maxFiles(5)
-                ->crop(true) // Should the image be cropped before upload.
-                ->ratio(16 / 9) // Crop ratio.
-                ->square();
-        });
-    }
-
-
-    protected function mainForm(CrudForm $form)
-    {
-        $form->image('image')
-            ->title('Portrait-Image')
-            ->hint('Portrait-Image')
-            ->cols(7)
-            ->imageSize('12')
-            ->maxFiles(1)
-            ->crop(true)
-            ->ratio(3 / 4)
-            ->square(false);
-
-        $form->relation('department')
-            ->title('Department')
-            ->preview(function ($table) {
-                $table->col('name');
-            });
-
-        $form->relation('projects')
-            ->title('Works on')
-            ->preview(function ($table) {
-                $table->col('{title}');
-            });
-
-        $form->relation('comments_morph_one')
-            ->title('Comments morphOne')
-            ->preview(function ($table) {
-                $table->col('body');
-            });
     }
 }
