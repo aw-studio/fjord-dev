@@ -19,6 +19,8 @@ class Department extends Model implements HasMediaContract
 
     protected $appends = ['employees_count'];
 
+    protected $with = ['employee'];
+
     public function getEmployeesCountAttribute()
     {
         return $this->employees()->count();
