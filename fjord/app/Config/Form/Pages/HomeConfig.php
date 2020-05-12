@@ -55,6 +55,7 @@ class HomeConfig extends FormConfig
         $form->card(function ($form) {
             $form->image('image')
                 ->title('Image')
+                ->crop(16 / 9)
                 ->maxFiles(10)
                 //->hint('The first image is the preview image.')
                 ->cols(12);
@@ -90,10 +91,11 @@ class HomeConfig extends FormConfig
      */
     protected function repeatables(Repeatables $rep)
     {
-        $rep->add('text', function ($form) {
+        $rep->add('text', function ($form, $preview) {
             $form->input('input')
                 ->title('Titel')
                 ->cols(6);
+            $preview->col('{input}');
         });
 
         $rep->add('image', function ($form) {

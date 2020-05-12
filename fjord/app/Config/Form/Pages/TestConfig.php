@@ -45,9 +45,13 @@ class TestConfig extends FormConfig
 
             $form->manyRelation('employee')
                 ->relatedCols(12)
+                //->sortable(false)
                 ->title('Employee')
                 ->model(Employee::class)
                 ->confirm()
+                ->form(function ($form) {
+                    $form->input('first_name')->title('Name');
+                })
                 ->preview(function ($table) {
                     $table->col('first_name');
                     $table->col('email');

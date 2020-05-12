@@ -163,7 +163,7 @@ class EmployeeConfig extends CrudConfig
             ->bind([
                 'related' => 'department',
                 'value' => 'name',
-                'route_prefix' => Fjord::config('crud.department')->route_prefix
+                'routePrefix' => Fjord::config('crud.department')->route_prefix
             ])
             ->label('Department')
             ->sortBy('department.name');
