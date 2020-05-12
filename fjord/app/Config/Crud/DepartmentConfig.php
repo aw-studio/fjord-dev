@@ -122,6 +122,9 @@ class DepartmentConfig extends CrudConfig
         */
 
         $form->card(function ($form) {
+            $form->input('employee.first_name')
+                ->title('Mitarbeiter Vorname');
+            return;
             $form->relation('employees')
                 ->title('Employees')
                 ->sortable()
