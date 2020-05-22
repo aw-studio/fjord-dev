@@ -45,6 +45,7 @@ class TestConfig extends FormConfig
 
             $form->manyRelation('employee')
                 ->relatedCols(12)
+                //->sortable(false)
                 ->title('Employee')
                 ->model(Employee::class)
                 ->sortable(true)

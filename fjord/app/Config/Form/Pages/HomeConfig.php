@@ -136,6 +136,7 @@ class HomeConfig extends FormConfig
 
             $form->image('image')
                 ->title('Image')
+                ->crop(16 / 9)
                 ->maxFiles(10)
                 ->crop(10 / 2)
                 ->firstBig()
@@ -188,6 +189,7 @@ class HomeConfig extends FormConfig
             $form->input('input')
                 ->title('Titel')
                 ->cols(6);
+            $preview->col('{input}');
         });
 
         $rep->add('image', function ($form, $preview) {
