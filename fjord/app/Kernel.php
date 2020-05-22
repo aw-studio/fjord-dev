@@ -14,4 +14,14 @@ class Kernel extends FjordKernel
     public $extensions = [
         'fj-users' => \FjordApp\Extensions\UserExtension::class,
     ];
+
+    /**
+     * Fjord application service providers.
+     *
+     * @var array
+     */
+    public $providers = [
+        Providers\LocalizationServiceProvider::class,
+        Providers\FjordServiceProvider::class,
+    ];
 }

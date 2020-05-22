@@ -4,6 +4,3 @@
 [submodule "packages/aw-studio/fjord-permissions"]
 	path = packages/aw-studio/fjord-permissions
 	url = https://github.com/aw-studio/fjord-permissions.git
-[submodule "packages/aw-studio/eloquent-js"]
-	path = packages/aw-studio/eloquent-js
-	url = https://github.com/aw-studio/eloquent-js.git

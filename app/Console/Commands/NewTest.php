@@ -24,7 +24,7 @@ class NewTest extends Command
      *
      * @var string
      */
-    protected $branch = 'config-architecture';
+    protected $branch = 'master';
 
     /**
      * Execute the console command.

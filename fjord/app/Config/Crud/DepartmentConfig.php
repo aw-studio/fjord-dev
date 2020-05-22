@@ -2,9 +2,10 @@
 
 namespace FjordApp\Config\Crud;
 
+use App\Models\Article;
+use App\Models\Employee;
 use Fjord\Crud\CrudForm;
 use App\Models\Department;
-use App\Models\Employee;
 use Fjord\Vue\Crud\CrudTable;
 use Fjord\Crud\Config\CrudConfig;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,7 +33,7 @@ class DepartmentConfig extends CrudConfig
      *
      * @var array
      */
-    public $search = ['title', 'text'];
+    public $search = ['name'];
 
     /**
      * Index table sort by default.
@@ -67,6 +68,11 @@ class DepartmentConfig extends CrudConfig
         $table->col('Employees')
             ->value('{employees_count}')
             ->sortBy('employees_count');
+
+        $table->toggle('active')
+            ->label('')
+            ->routePrefix($this->routePrefix())
+            ->small();
     }
 
     /**
@@ -122,13 +128,20 @@ class DepartmentConfig extends CrudConfig
         */
 
         $form->card(function ($form) {
-            $form->input('employee.first_name')
-                ->title('Mitarbeiter Vorname');
-            return;
+
+            $form->manyRelation('articles')
+                ->model(Article::class)
+                ->preview(function ($preview) {
+                    $preview->col('Title')->value('{title}');
+                })
+                ->title('Articles')
+                ->cols(12);
+
             $form->relation('employees')
                 ->title('Employees')
                 ->sortable()
                 ->preview(function ($table) {
+                    $table->col('id');
                     $table->col('first_name');
                 });
 

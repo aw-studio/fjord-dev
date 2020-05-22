@@ -5,7 +5,7 @@ namespace App\Models;
 use Fjord\Crud\Models\Traits\TrackEdits;
 use Fjord\Crud\Models\Traits\HasMedia;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia\HasMedia as HasMediaContract;
+use Spatie\MediaLibrary\HasMedia as HasMediaContract;
 
 class Department extends Model implements HasMediaContract
 {
@@ -15,15 +15,24 @@ class Department extends Model implements HasMediaContract
     // enter all fillable columns. translated columns must also
     // be set fillable. don't forget to also set them fillable in
     // the coresponding translation-model
-    protected $fillable = ['name', 'employees_relation'];
+    protected $fillable = ['name', 'employees_relation', 'active'];
 
     protected $appends = ['employees_count'];
 
     protected $with = ['employee'];
 
+    protected $casts = [
+        'active' => 'boolean'
+    ];
+
     public function getEmployeesCountAttribute()
     {
         return $this->employees()->count();
+    }
+
+    public function articles()
+    {
+        return $this->manyRelation(Article::class, 'articles');
     }
 
     public function content()

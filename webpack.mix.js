@@ -61,7 +61,7 @@ mix.copyDirectory('public/fjord', 'packages/aw-studio/fjord/publish/assets')
         'public/fjord/css/app.css',
         'packages/aw-studio/fjord/public/css/app.css'
     )
-    .package('package.json', 'packages/aw-studio/fjord')
+    //.package('package.json', 'packages/aw-studio/fjord')
     // browser sync
     .browserSync({
         proxy: 'fjord-dev.aw',

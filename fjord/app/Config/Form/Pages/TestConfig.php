@@ -47,10 +47,21 @@ class TestConfig extends FormConfig
                 ->relatedCols(12)
                 ->title('Employee')
                 ->model(Employee::class)
-                ->confirm()
+                ->sortable(true)
+                ->perPage(5)
+                ->form(function ($form) {
+                    $form->input('first_name')
+                        ->title('Vorname')
+                        ->cols(6);
+
+                    $form->input('last_name')
+                        ->title('Nachname')
+                        ->cols(6);
+                })
                 ->preview(function ($table) {
-                    $table->col('first_name');
-                    $table->col('email');
+                    $table->col('ID')->value('id')->small();
+                    $table->col('Firstname')->value('first_name');
+                    $table->col('E-mail')->value('{email}');
                 });
 
             /*

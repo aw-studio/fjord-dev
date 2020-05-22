@@ -165,7 +165,7 @@ class EmployeeConfig extends CrudConfig
             ->bind([
                 'related' => 'department',
                 'value' => 'name',
-                'route_prefix' => Fjord::config('crud.department')->route_prefix
+                'routePrefix' => Fjord::config('crud.department')->route_prefix
             ])
             ->label('Department')
             ->sortBy('department.name');
@@ -200,10 +200,34 @@ class EmployeeConfig extends CrudConfig
     {
         $form->card(function ($form) {
 
-            $form->input('first_name')->title('Firstname')->cols(6);
-            $form->input('last_name')->title('Lastname')->cols(6);
+            $form->col(7, function ($col) {
+                $col->input('first_name')
+                    ->title('Firstname')
+                    ->rules('max:50')
+                    ->creationRules('required')
+                    ->cols(12);
 
-            $form->input('email')->title('E-mail')->cols(6);
+                $col->input('last_name')
+                    ->title('Lastname')
+                    ->rules('max:60')
+                    ->creationRules('required')
+                    ->cols(12);
+            });
+
+            $form->image('images') // images is the corresponding media collection.
+                ->translatable()
+                ->title('Images')
+                ->firstBig()
+                ->hint('Image Collection.')
+                ->maxFiles(5);
+
+
+
+            $form->input('email')
+                ->rules('max:60')
+                ->title('E-mail')
+                ->creationRules('required')
+                ->cols(6);
         })->cols(12)->title('Main');
     }
 }

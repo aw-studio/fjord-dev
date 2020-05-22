@@ -7,7 +7,7 @@ use Spatie\MediaLibrary\Models\Media;
 use Fjord\Crud\Models\Traits\HasMedia;
 use Fjord\Crud\Models\Traits\TrackEdits;
 
-use Spatie\MediaLibrary\HasMedia\HasMedia as HasMediaContract;
+use Spatie\MediaLibrary\HasMedia as HasMediaContract;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -59,11 +59,11 @@ class Employee extends Model implements HasMediaContract
         return $this->blocks('block');
     }
 
-    /**
-     * Accessors
-     *
-     *
-     */
+    public function getImagesAttribute()
+    {
+        return $this->getMedia('images');
+    }
+
     public function getImageAttribute()
     {
         return $this->getMedia('image')->first();
@@ -98,15 +98,5 @@ class Employee extends Model implements HasMediaContract
     public function scopeHumanResources($query)
     {
         return $query->where('department_id', 5);
-    }
-
-    public function registerMediaConversions(Media $media = null)
-    {
-        foreach (config('fjord.mediaconversions.default') as $key => $value) {
-            $this->addMediaConversion($key)
-                ->width($value[0])
-                ->height($value[1])
-                ->sharpen($value[2]);
-        }
     }
 }

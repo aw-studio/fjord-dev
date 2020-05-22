@@ -35,8 +35,19 @@ return [
     */
 
     'login' => [
-        'username' => false
+        'username' => true
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Google Analytics Id
+    |--------------------------------------------------------------------------
+    |
+    | Set the Google Analytics Id to track traffic on your Fjord application.
+    |
+    */
+
+    'google-analytics-id' => env('GOOGLE_ANALYTICS_ID', false),
 
     /*
     |--------------------------------------------------------------------------

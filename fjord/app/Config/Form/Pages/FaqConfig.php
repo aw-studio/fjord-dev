@@ -33,6 +33,12 @@ class FaqConfig extends FormConfig
      */
     public function form(CrudForm $form)
     {
-        //
+        $form->card(function ($form) {
+
+            $form->input('title')
+                ->title('Title');
+
+            $form->markdown(\Illuminate\Support\Facades\File::get(fjord_path('docs/docs/examples/form-loader-example.md')));
+        });
     }
 }

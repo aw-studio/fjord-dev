@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Fjord\Crud\Models\Traits\HasMedia;
 use Fjord\Crud\Models\Traits\TrackEdits;
 use Fjord\Crud\Models\Traits\Translatable;
-use Spatie\MediaLibrary\HasMedia\HasMedia as HasMediaContract;
+use Spatie\MediaLibrary\HasMedia as HasMediaContract;
 
 class Article extends Model implements HasMediaContract
 {
