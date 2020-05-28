@@ -98,7 +98,7 @@ class DepartmentConfig extends CrudConfig
     {
         /*
         $form->info('Firmenadresse')
-            ->cols(4)
+            ->width(4)
             ->text('Diese Adresse erscheint auf Ihren Rechnungen. In Ihren Versandeinstellungen können Sie die Adresse bearbeiten, die für die Berechnung der Versandtarife verwendet wird.')
             ->text('Ihr Hauptgeschäftsstandort kann beeinflussen, welche Apps in Ihrem Shop verwendet werden können. <a href="#">Weitere Informationen über die Kompatibilität von Apps</a>');
 
@@ -106,7 +106,7 @@ class DepartmentConfig extends CrudConfig
 
             $form->info('FORMAT DER BESTELLNUMMER BEARBEITEN (OPTIONAL)')
                 ->model('name')
-                ->cols(12)
+                ->cowidthls(12)
                 ->text('Bestellnummern beginnen standardmäßig bei #1001. Sie können die Bestellnummer selbst nicht ändern. Sie können jedoch ein Präfix oder Suffix hinzufügen, um IDs wie "EN1001" oder "1001-A" zu erstellen.');
 
             $form->input('length')
@@ -115,14 +115,14 @@ class DepartmentConfig extends CrudConfig
                 ->placeholder('The length in cm')
                 ->hint('Enter the length in cm.')
                 ->append('cm')
-                ->cols(12);
+                ->width(12);
 
             $form->input('suffix')
                 ->title('Suffix')
-                ->cols(6);
+                ->width(6);
 
-            $form->component('test')->model('prefix')->cols(12);
-        })->cols(8)->class('md-2');
+            $form->component('test')->model('prefix')->width(12);
+        })->width(8)->class('md-2');
 
         $form->line();
         */
@@ -135,7 +135,7 @@ class DepartmentConfig extends CrudConfig
                     $preview->col('Title')->value('{title}');
                 })
                 ->title('Articles')
-                ->cols(12);
+                ->width(12);
 
             $form->relation('employees')
                 ->title('Employees')
@@ -143,6 +143,13 @@ class DepartmentConfig extends CrudConfig
                 ->preview(function ($table) {
                     $table->col('id');
                     $table->col('first_name');
+                });
+
+            $form->blocks('test')
+                ->title('TEst')
+                ->repeatables(function ($rep) {
+                    $rep->add('test', function ($form) {
+                    });
                 });
 
             /*
@@ -173,7 +180,7 @@ class DepartmentConfig extends CrudConfig
             ->title('Title')
             ->placeholder('Title')
             ->hint('The project\'s title')
-            ->cols(8);
+            ->width(8);
 
         $form->relation('comments_morph_many')
             ->title('Comments morphMany')

@@ -121,7 +121,7 @@ class ProjectConfig extends CrudConfig
     {
         $form->card(function ($form) {
             $this->mainForm($form);
-        })->cols(12);
+        })->width(12);
     }
 
     private function mainForm(CrudForm $form)
@@ -131,7 +131,7 @@ class ProjectConfig extends CrudConfig
             ->title('Title')
             ->placeholder('Title')
             ->hint('The project\'s title')
-            ->cols(8);
+            ->width(8);
 
         $form->select('employee_id')
             ->title('Employee')
@@ -139,11 +139,11 @@ class ProjectConfig extends CrudConfig
                 return [$item->id => $item->fullName];
             })->toArray())
             ->hint('Select a Projectmanager')
-            ->cols(4);
+            ->width(4);
 
         $form->wysiwyg('description')
             ->title('Description')
             ->hint('The project\'s description')
-            ->cols(12);
+            ->width(12);
     }
 }

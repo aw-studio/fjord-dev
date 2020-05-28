@@ -200,19 +200,19 @@ class EmployeeConfig extends CrudConfig
     {
         $form->card(function ($form) {
 
-            $form->col(7, function ($col) {
+            $form->group(function ($col) {
                 $col->input('first_name')
                     ->title('Firstname')
                     ->rules('max:50')
                     ->creationRules('required')
-                    ->cols(12);
+                    ->width(12);
 
                 $col->input('last_name')
                     ->title('Lastname')
                     ->rules('max:60')
                     ->creationRules('required')
-                    ->cols(12);
-            });
+                    ->width(12);
+            })->width(7);
 
             $form->image('images') // images is the corresponding media collection.
                 ->translatable()
@@ -227,7 +227,7 @@ class EmployeeConfig extends CrudConfig
                 ->rules('max:60')
                 ->title('E-mail')
                 ->creationRules('required')
-                ->cols(6);
-        })->cols(12)->title('Main');
+                ->width(6);
+        })->width(12)->title('Main');
     }
 }

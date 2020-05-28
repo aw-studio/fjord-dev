@@ -124,9 +124,9 @@ class PostConfig extends CrudConfig
      */
     public function form(CrudForm $form)
     {
-        $form->card(function($form) {
+        $form->card(function ($form) {
             $this->mainCard($form);
-        })->cols(12)->title('Main');
+        })->width(12)->title('Main');
     }
 
     /**
@@ -138,7 +138,7 @@ class PostConfig extends CrudConfig
     protected function mainCard(CrudForm $form)
     {
         $form->input('input')
-                ->title('Block input')
-                ->cols(6);
+            ->title('Block input')
+            ->width(6);
     }
 }

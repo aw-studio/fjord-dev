@@ -3,7 +3,9 @@
 namespace FjordApp\Config\Crud;
 
 use App\Models\Comment;
+use App\Models\Employee;
 use Fjord\Crud\CrudForm;
+use App\Models\Department;
 use Fjord\Vue\Crud\CrudTable;
 use Fjord\Crud\Config\CrudConfig;
 use FjordApp\Controllers\Crud\CommentController;
@@ -59,24 +61,23 @@ class CommentConfig extends CrudConfig
      */
     public function form(CrudForm $form)
     {
-        $form->card(
-            $this->mainForm($form),
-        )->cols(12)->title('Main');
+        $form->card(function ($form) {
+            $this->mainForm($form);
+        })->width(12)->title('Main');
     }
 
 
     protected function mainForm(CrudForm $form)
     {
-
         $form->relation('commentable')
             ->title('Comments morphTo')
-            ->models(
-                \App\Models\Employee::class,
-                \App\Models\Department::class,
-            )
-            ->preview(function ($employeeTable, $departmentTable) {
-                $employeeTable->col('name');
-                $departmentTable->col('title');
+            ->types(function ($morph) {
+                $morph->to(Employee::class, function ($preview) {
+                    $preview->col('Name')->value('{first_name} {last_name}');
+                });
+                $morph->to(Department::class, function ($preview) {
+                    $preview->col('Name')->value('{name}');
+                });
             });
     }
 }

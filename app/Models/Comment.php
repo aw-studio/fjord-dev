@@ -13,6 +13,8 @@ class Comment extends Model
 
     /**
      * Get the owning commentable model.
+     * 
+     * @return MorphTo
      */
     public function commentable()
     {

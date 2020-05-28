@@ -48,7 +48,7 @@ class TagConfig extends CrudConfig
     {
         $form->card(
             $this->mainForm($form),
-        )->cols(12)->title('Main');
+        )->width(12)->title('Main');
     }
 
 

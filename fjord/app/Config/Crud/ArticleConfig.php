@@ -113,7 +113,7 @@ class ArticleConfig extends CrudConfig
     {
         $form->card(function ($form) {
             $this->mainCard($form);
-        })->cols(12)->title('Main');
+        })->width(12)->title('Main');
     }
 
     /**
@@ -126,6 +126,6 @@ class ArticleConfig extends CrudConfig
     {
         $form->input('title')
             ->title('Title')
-            ->cols(6);
+            ->width(6);
     }
 }

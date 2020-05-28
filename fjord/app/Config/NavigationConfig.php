@@ -74,6 +74,10 @@ class NavigationConfig extends Config
                 'title' => ucfirst(__f("models.projects")),
                 'icon' => '<i class="fas fa-project-diagram">',
             ]),
+            $nav->preset('crud.comments', [
+                'title' => 'Comments',
+                'icon' => fa('comment'),
+            ]),
 
             $nav->preset('crud.articles', [
                 'icon' => fa('newspaper'),

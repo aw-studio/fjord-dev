@@ -51,11 +51,10 @@ class MergePackageJson {
 
 mix.extend('package', new MergePackageJson());
 
-mix.copyDirectory('public/fjord', 'packages/aw-studio/fjord/publish/assets')
-    .copy(
-        'public/fjord/css/app.css',
-        'packages/aw-studio/fjord/public/css/app.css'
-    )
+mix.copy(
+    'public/fjord/css/app.css',
+    'packages/aw-studio/fjord/public/css/app.css'
+)
     .copy('public/fjord/js/app.js', 'packages/aw-studio/fjord/public/js/app.js')
     .copy(
         'public/fjord/css/app.css',

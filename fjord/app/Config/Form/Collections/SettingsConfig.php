@@ -35,6 +35,6 @@ class SettingsConfig extends FormConfig
     {
         $form->card(function ($form) {
             $form->input('text')->title('Title');
-        })->cols(6);
+        })->width(6);
     }
 }
