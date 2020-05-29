@@ -145,13 +145,6 @@ class DepartmentConfig extends CrudConfig
                     $table->col('first_name');
                 });
 
-            $form->blocks('test')
-                ->title('TEst')
-                ->repeatables(function ($rep) {
-                    $rep->add('test', function ($form) {
-                    });
-                });
-
             /*
             $form->blocks('block')
                 ->title('Blocks')

@@ -71,7 +71,8 @@ class CommentConfig extends CrudConfig
     {
         $form->relation('commentable')
             ->title('Comments morphTo')
-            ->types(function ($morph) {
+            ->small()
+            ->morphTypes(function ($morph) {
                 $morph->to(Employee::class, function ($preview) {
                     $preview->col('Name')->value('{first_name} {last_name}');
                 });
