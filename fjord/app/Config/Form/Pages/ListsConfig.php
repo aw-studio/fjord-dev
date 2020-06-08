@@ -46,8 +46,6 @@ class ListsConfig extends FormConfig
 
             $form->list('text')
                 ->title('Main Navigation');
-
-            // ...
         });
     }
 }
