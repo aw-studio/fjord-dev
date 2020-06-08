@@ -59,6 +59,9 @@ class NavigationConfig extends Config
                 $nav->preset('form.pages.faq', [
                     'icon' => '<i class="fas fa-home">'
                 ]),
+                $nav->preset('form.pages.lists', [
+                    'icon' => '<i class="fas fa-list">'
+                ]),
             ])
         ]);
 
