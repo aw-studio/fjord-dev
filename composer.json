@@ -12,23 +12,18 @@
             "type": "path",
             "url": "packages/aw-studio/fjord",
             "symlink": true
-        },
-        {
-            "type": "path",
-            "url": "packages/aw-studio/fjord-permissions",
-            "symlink": true
         }
     ],
     "require": {
         "php": "^7.2.5",
         "aw-studio/fjord": "@dev",
-        "aw-studio/fjord-permissions": "^1.0",
         "awobaz/compoships": "^1.1",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "spatie/pdf-to-image": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

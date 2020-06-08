@@ -7,9 +7,7 @@ namespace FjordApp\Controllers\Crud;
 use App\Models\Department;
 use Fjord\User\Models\FjordUser;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Validator;
 use Fjord\Crud\Controllers\CrudController;
-use Fjord\Crud\Requests\CrudUpdateRequest;
 
 class DepartmentController extends CrudController
 {

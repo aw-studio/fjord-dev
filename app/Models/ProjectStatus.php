@@ -5,7 +5,7 @@ namespace App\Models;
 use Fjord\Crud\Models\Traits\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Fjord\Crud\Models\Traits\TrackEdits;
-use Spatie\MediaLibrary\HasMedia\HasMedia as HasMediaContract;
+use Spatie\MediaLibrary\HasMedia as HasMediaContract;
 
 class ProjectStatus extends Model implements HasMediaContract
 {

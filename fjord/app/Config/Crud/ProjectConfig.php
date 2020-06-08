@@ -3,8 +3,8 @@
 namespace FjordApp\Config\Crud;
 
 use App\Models\Project;
-use Fjord\Crud\CrudForm;
-use Fjord\Vue\Crud\CrudTable;
+use Fjord\Crud\CrudShow;
+use Fjord\Crud\CrudIndex;
 use Fjord\Crud\Config\CrudConfig;
 use Illuminate\Database\Eloquent\Builder;
 use FjordApp\Controllers\Crud\ProjectController;
@@ -83,19 +83,21 @@ class ProjectConfig extends CrudConfig
     /**
      * Setup index table.
      *
-     * @param \Fjord\Vue\Crud\CrudTable $table
+     * @param \Fjord\Crud\CrudIndex $table
      * @return void
      */
-    public function index(CrudTable $table)
+    public function index(CrudIndex $container)
     {
-        $table->col('Title')
-            ->value('{title}')
-            ->sortBy('title');
+        $container->table(function ($table) {
+            $table->col('Title')
+                ->value('{title}')
+                ->sortBy('title');
 
-        $table->component('project-status')
-            ->label('Status')
-            ->sortBy('title')
-            ->small();
+            $table->component('project-status')
+                ->label('Status')
+                ->sortBy('title')
+                ->small();
+        });
     }
 
     /**
@@ -114,10 +116,10 @@ class ProjectConfig extends CrudConfig
     /**
      * Setup create and edit form.
      *
-     * @param \Fjord\Crud\CrudForm $form
+     * @param \Fjord\Crud\CrudShow $form
      * @return void
      */
-    public function form(CrudForm $form)
+    public function show(CrudShow $form)
     {
         $form->card(function ($form) {
             $this->mainForm($form);

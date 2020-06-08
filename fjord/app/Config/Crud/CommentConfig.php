@@ -4,9 +4,9 @@ namespace FjordApp\Config\Crud;
 
 use App\Models\Comment;
 use App\Models\Employee;
-use Fjord\Crud\CrudForm;
+use Fjord\Crud\CrudShow;
 use App\Models\Department;
-use Fjord\Vue\Crud\CrudTable;
+use Fjord\Crud\CrudIndex;
 use Fjord\Crud\Config\CrudConfig;
 use FjordApp\Controllers\Crud\CommentController;
 
@@ -29,15 +29,16 @@ class CommentConfig extends CrudConfig
     /**
      * Setup index table.
      *
-     * @param \Fjord\Vue\Crud\CrudTable $table
+     * @param \Fjord\Vue\Crud\CrudIndex $table
      * @return void
      */
-    public function index(CrudTable $table)
+    public function index(CrudIndex $container)
     {
-
-        $table->col('Text')
-            ->value('body')
-            ->sortBy('body');
+        $container->table(function ($table) {
+            $table->col('Text')
+                ->value('body')
+                ->sortBy('body');
+        });
     }
 
     /**
@@ -56,10 +57,10 @@ class CommentConfig extends CrudConfig
     /**
      * Setup create and edit form.
      *
-     * @param \Fjord\Crud\CrudForm $form
+     * @param \Fjord\Crud\CrudShow $form
      * @return void
      */
-    public function form(CrudForm $form)
+    public function show(CrudShow $form)
     {
         $form->card(function ($form) {
             $this->mainForm($form);
@@ -67,7 +68,7 @@ class CommentConfig extends CrudConfig
     }
 
 
-    protected function mainForm(CrudForm $form)
+    protected function mainForm(CrudShow $form)
     {
         $form->relation('commentable')
             ->title('Comments morphTo')

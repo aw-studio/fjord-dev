@@ -2,18 +2,14 @@
 
 namespace FjordApp\Config\Crud;
 
-use App\Models\Article;
-use App\Models\Employee;
-use Fjord\Crud\CrudForm;
+use Fjord\Crud\CrudShow;
+use Fjord\Crud\CrudIndex;
 use App\Models\Department;
-use Fjord\Vue\Crud\CrudTable;
 use Fjord\Crud\Config\CrudConfig;
-use Illuminate\Database\Eloquent\Builder;
 use FjordApp\Controllers\Crud\DepartmentController;
 
 class DepartmentConfig extends CrudConfig
 {
-
     /**
      * Model class.
      *
@@ -29,56 +25,19 @@ class DepartmentConfig extends CrudConfig
     public $controller = DepartmentController::class;
 
     /**
-     * Index table search keys.
+     * Route prefix.
      *
-     * @var array
+     * @return string
      */
-    public $search = ['name'];
-
-    /**
-     * Index table sort by default.
-     *
-     * @var string
-     */
-    public $sortByDefault = 'id.desc';
-
-    /**
-     * Initialize index query.
-     *
-     * @param Builder $query
-     * @return Builder $query
-     */
-    public function indexQuery(Builder $query)
+    public function routePrefix()
     {
-        return $query;
+        return 'departments';
     }
 
     /**
-     * Setup index table.
+     * Crud singular & plural name.
      *
-     * @param CrudTable $table
-     * @return void
-     */
-    public function index(CrudTable $table)
-    {
-        $table->col('Department Name')
-            ->value('{name}')
-            ->sortBy('name');
-
-        $table->col('Employees')
-            ->value('{employees_count}')
-            ->sortBy('employees_count');
-
-        $table->toggle('active')
-            ->label('')
-            ->routePrefix($this->routePrefix())
-            ->small();
-    }
-
-    /**
-     * Model singular and plural name.
-     *
-     * @return array $names
+     * @return array
      */
     public function names()
     {
@@ -89,96 +48,39 @@ class DepartmentConfig extends CrudConfig
     }
 
     /**
-     * Setup create and edit form.
+     * Setup crud index container.
      *
-     * @param CrudTable $form
+     * @param CrudIndex $table
      * @return void
      */
-    public function form(CrudForm $form)
+    public function index(CrudIndex $container)
     {
-        /*
-        $form->info('Firmenadresse')
-            ->width(4)
-            ->text('Diese Adresse erscheint auf Ihren Rechnungen. In Ihren Versandeinstellungen können Sie die Adresse bearbeiten, die für die Berechnung der Versandtarife verwendet wird.')
-            ->text('Ihr Hauptgeschäftsstandort kann beeinflussen, welche Apps in Ihrem Shop verwendet werden können. <a href="#">Weitere Informationen über die Kompatibilität von Apps</a>');
+        //$container->expand();
 
-        $form->card(function ($form) {
+        $container->table(function ($table) {
+            $table->col('Department sdsdfsdf')
+                ->value('{name}')
+                ->sortBy('name');
+        })
+            ->sortByDefault('id.desc')
+            ->search('name')
+            ->width(1 / 2);
 
-            $form->info('FORMAT DER BESTELLNUMMER BEARBEITEN (OPTIONAL)')
-                ->model('name')
-                ->cowidthls(12)
-                ->text('Bestellnummern beginnen standardmäßig bei #1001. Sie können die Bestellnummer selbst nicht ändern. Sie können jedoch ein Präfix oder Suffix hinzufügen, um IDs wie "EN1001" oder "1001-A" zu erstellen.');
-
-            $form->input('length')
-                ->title('Length')
-                ->type('number')
-                ->placeholder('The length in cm')
-                ->hint('Enter the length in cm.')
-                ->append('cm')
-                ->width(12);
-
-            $form->input('suffix')
-                ->title('Suffix')
-                ->width(6);
-
-            $form->component('test')->model('prefix')->width(12);
-        })->width(8)->class('md-2');
-
-        $form->line();
-        */
-
-        $form->card(function ($form) {
-
-            $form->manyRelation('articles')
-                ->model(Article::class)
-                ->preview(function ($preview) {
-                    $preview->col('Title')->value('{title}');
-                })
-                ->title('Articles')
-                ->width(12);
-
-            $form->relation('employees')
-                ->title('Employees')
-                ->sortable()
-                ->preview(function ($table) {
-                    $table->col('id');
-                    $table->col('first_name');
-                });
-
-            /*
-            $form->blocks('block')
-                ->title('Blocks')
-                ->repeatables(function ($rep) {
-                    $rep->add('one relation', function ($form) {
-                        $form->oneRelation('employee')->model(Employee::class);
-                    });
-                    $rep->add('many relation', function ($form) {
-                        $form->manyRelation('employees')->model(Employee::class);
-                    });
-                });
-                */
-        })->title('BelongsToMany')->class('');
+        $container->component('fj-test-chart')
+            ->prop('money', 20)
+            ->prop('width', 1 / 4);
     }
 
     /**
-     * Main card fields.
+     * Setup create and edit form.
      *
-     * @param CrudTable $form
+     * @param CrudShow $form
      * @return void
      */
-    protected function mainForm(CrudForm $form)
+    public function show(CrudShow $container)
     {
-        $form->input('name')
-            ->max(60)
-            ->title('Title')
-            ->placeholder('Title')
-            ->hint('The project\'s title')
-            ->width(8);
-
-        $form->relation('comments_morph_many')
-            ->title('Comments morphMany')
-            ->preview(function ($table) {
-                $table->col('first_name');
-            });
+        $container->card(function ($form) {
+            $form->input('name')->title('Name');
+        });
     }
 }

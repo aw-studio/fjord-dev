@@ -3,8 +3,8 @@
 namespace FjordApp\Config\Crud;
 
 use App\Models\Employee;
-use Fjord\Crud\CrudForm;
-use Fjord\Vue\Crud\CrudTable;
+use Fjord\Crud\CrudShow;
+use Fjord\Crud\CrudIndex;
 use Fjord\Support\Facades\Fjord;
 use Fjord\Crud\Config\CrudConfig;
 use Fjord\Crud\Fields\Blocks\Repeatables;
@@ -131,10 +131,10 @@ class EmployeeConfig extends CrudConfig
     /**
      * Setup index table.
      *
-     * @param \Fjord\Vue\Crud\CrudTable $table
+     * @param \Fjord\Vue\Crud\CrudIndex $table
      * @return void
      */
-    public function index(CrudTable $table)
+    public function index(CrudIndex $container)
     {
         $table->col('Id')
             ->value('{id}')
@@ -185,7 +185,7 @@ class EmployeeConfig extends CrudConfig
     public function names()
     {
         return [
-            'singular' => ucfirst(__f('models.employee')),
+            'singular' => '{first_name} {last_name}',
             'plural' => ucfirst(__f('models.employees')),
         ];
     }
@@ -193,10 +193,10 @@ class EmployeeConfig extends CrudConfig
     /**
      * Setup create and edit form.
      *
-     * @param \Fjord\Crud\CrudForm $form
+     * @param \Fjord\Crud\CrudShow $form
      * @return void
      */
-    public function form(CrudForm $form)
+    public function show(CrudShow $form)
     {
         $form->card(function ($form) {
 

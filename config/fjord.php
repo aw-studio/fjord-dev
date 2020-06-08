@@ -93,6 +93,7 @@ return [
         ],
         'css' => [
             // Include more css files here.
+            'https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css',
         ],
     ],
 

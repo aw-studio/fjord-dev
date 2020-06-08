@@ -35,6 +35,11 @@ class Department extends Model implements HasMediaContract
         return $this->manyRelation(Article::class, 'articles');
     }
 
+    public function article()
+    {
+        return $this->oneRelation(Article::class, 'article');
+    }
+
     public function content()
     {
         return $this->blocks('content');

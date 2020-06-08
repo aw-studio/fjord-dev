@@ -3,14 +3,13 @@
 namespace FjordApp\Config\Form\Collections;
 
 use Fjord\Crud\CrudForm;
+use Fjord\Crud\CrudShow;
 use Fjord\Crud\Config\FormConfig;
 use Fjord\Crud\Config\Traits\HasCrudForm;
 use FjordApp\Controllers\Form\Collections\SettingsController;
 
 class SettingsConfig extends FormConfig
 {
-    use HasCrudForm;
-
     /**
      * Controller class.
      *
@@ -28,10 +27,10 @@ class SettingsConfig extends FormConfig
     /**
      * Setup create and edit form.
      *
-     * @param \Fjord\Crud\CrudForm $form
+     * @param \Fjord\Crud\CrudShow $form
      * @return void
      */
-    public function form(CrudForm $form)
+    public function show(CrudShow $form)
     {
         $form->card(function ($form) {
             $form->input('text')->title('Title');

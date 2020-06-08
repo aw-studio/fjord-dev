@@ -2,13 +2,13 @@
 
 namespace FjordApp\Config\Crud;
 
-use Fjord\Crud\CrudForm;
-use Fjord\Vue\Crud\CrudTable;
+use App\Models\Post;
+use Fjord\Crud\CrudShow;
+use Fjord\Crud\CrudIndex;
 use Fjord\Crud\Config\CrudConfig;
+
 use Fjord\Crud\Fields\Blocks\Repeatables;
 use Illuminate\Database\Eloquent\Builder;
-
-use App\Models\Post;
 use FjordApp\Controllers\Crud\PostController;
 
 class PostConfig extends CrudConfig
@@ -68,61 +68,33 @@ class PostConfig extends CrudConfig
     }
 
     /**
-     * Initialize index query.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder $query
-     */
-    public function indexQuery(Builder $query)
-    {
-        // $query->with('relation');
-
-        return $query;
-    }
-
-    /**
-     * Index table filter groups.
-     *
-     * @return array
-     */
-    public function filter()
-    {
-        return [
-            // Filter have to be in groups.
-            'Fitler Group Title' => [
-
-                // Use scopes as filter.
-                'scopeName' => 'Description',
-            ],
-        ];
-    }
-
-    /**
      * Build index table.
      *
-     * @param \Fjord\Vue\Crud\CrudTable $table
+     * @param \Fjord\Vue\Crud\CrudIndex $table
      * @return void
      */
-    public function index(CrudTable $table)
+    public function index(CrudIndex $container)
     {
-        $table->component('fj-col-image')
-            ->src('{image.conversion_urls.sm}')
-            ->maxWidth('50px')
-            ->label('Image')
-            ->small();
+        $container->table(function ($table) {
+            $table->component('fj-col-image')
+                ->src('{image.conversion_urls.sm}')
+                ->maxWidth('50px')
+                ->label('Image')
+                ->small();
 
-        $table->col('Lastname')
-            ->value('{last_name}')
-            ->sortBy('last_name');
+            $table->col('Lastname')
+                ->value('{last_name}')
+                ->sortBy('last_name');
+        });
     }
 
     /**
      * Setup create and edit form.
      *
-     * @param \Fjord\Crud\CrudForm $form
+     * @param \Fjord\Crud\CrudShow $form
      * @return void
      */
-    public function form(CrudForm $form)
+    public function show(CrudShow $form)
     {
         $form->card(function ($form) {
             $this->mainCard($form);
@@ -132,7 +104,7 @@ class PostConfig extends CrudConfig
     /**
      * Define form sections in methods to keep the overview.
      *
-     * @param \Fjord\Crud\CrudForm $form
+     * @param \Fjord\Crud\CrudShow $form
      * @return void
      */
     protected function mainCard(CrudForm $form)

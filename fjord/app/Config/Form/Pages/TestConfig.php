@@ -2,13 +2,12 @@
 
 namespace FjordApp\Config\Form\Pages;
 
-use Fjord\Crud\CrudForm;
+use Fjord\Crud\CrudShow;
 use Fjord\Crud\Config\FormConfig;
 use FjordApp\Controllers\Form\Pages\TestController;
 
 class TestConfig extends FormConfig
 {
-
     /**
      * Controller class.
      *
@@ -38,14 +37,23 @@ class TestConfig extends FormConfig
     /**
      * Setup create and edit form.
      *
-     * @param \Fjord\Crud\CrudForm $form
+     * @param \Fjord\Crud\CrudShow $form
      * @return void
      */
-    public function form(CrudForm $form)
+    public function show(CrudShow $form)
     {
         $form->card(function ($form) {
 
             $form->input('text')
+                ->translatable()
+                ->rules('required', 'min:5', 'max:25')
+                ->title('Title')
+                ->width(4);
+
+            $form->wysiwyg('asdfsd')
+                ->title('text');
+
+            $form->textarea('sdfs')
                 ->title('text');
 
             // ...

@@ -3,16 +3,16 @@
 namespace FjordApp\Config\Form\Pages;
 
 use App\Models\Article;
-use Fjord\Crud\CrudForm;
+use App\Models\Comment;
+use Fjord\Crud\CrudShow;
 use App\Models\Department;
+use App\Models\Employee;
 use Fjord\Crud\Config\FormConfig;
 use Fjord\Crud\Config\Traits\HasCrudForm;
 use FjordApp\Controllers\Form\Pages\FaqController;
 
 class FaqConfig extends FormConfig
 {
-    use HasCrudForm;
-
     /**
      * Controller class.
      *
@@ -30,44 +30,19 @@ class FaqConfig extends FormConfig
     /**
      * Setup create and edit form.
      *
-     * @param \Fjord\Crud\CrudForm $form
+     * @param \Fjord\Crud\CrudShow $form
      * @return void
      */
-    public function form(CrudForm $form)
+    public function show(CrudShow $form)
     {
-
         $form->card(function ($form) {
-            $form->select('test_select')
-                ->title('Test select')
-                ->options([
-                    'a' => 'A',
-                    'b' => 'B',
-                ]);
 
-            $form->group(function ($form) {
-                $form->input('title')
-                    ->title('Title');
-                $form->input('title')
-                    ->title('Title');
-            })->dependsOn('test_select', 'a');
-
-
-            /*
-                ->preview(function ($preview) {
-                    $preview->col('Name')->value('{name}');
-                });
-                */
-        })->width(1 / 2);
-
-        /*
-        $form->card(function ($form) {
-            
-            $form->input('title')
-                ->title('Title');
-
-            $form->markdown(\Illuminate\Support\Facades\File::get(fjord_path('docs/docs/examples/form-loader-example.md')));
-            
-        });
-        */
+            $form->manyRelation('employees')
+                ->model(Employee::class)
+                ->confirm(false)
+                ->perPage(2)
+                ->sortable()
+                ->title('Employee');
+        })->width(12);
     }
 }

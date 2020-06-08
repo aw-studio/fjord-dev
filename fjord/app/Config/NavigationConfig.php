@@ -22,12 +22,14 @@ class NavigationConfig extends Config
         $nav->section([
             $nav->title(__f('fj.user_administration')),
 
-            $nav->preset('users'),
+            $nav->preset('user.user_index', [
+                'icon' => fa('users')
+            ]),
             $nav->preset('permissions')
         ]);
 
         $nav->section([
-            $nav->preset('collections.settings', [
+            $nav->preset('form.collections.settings', [
                 'title' => __f('fj.settings'),
                 'icon' => fa('cog')
             ])
@@ -48,13 +50,13 @@ class NavigationConfig extends Config
                 'title' => 'Pages',
                 'icon' => '<i class="fas fa-file"></i>',
             ], [
-                $nav->preset('pages.home', [
+                $nav->preset('form.pages.home', [
                     'icon' => '<i class="fas fa-home">'
                 ]),
-                $nav->preset('pages.test', [
+                $nav->preset('form.pages.test', [
                     'icon' => fa('file-alt')
                 ]),
-                $nav->preset('pages.faq', [
+                $nav->preset('form.pages.faq', [
                     'icon' => '<i class="fas fa-home">'
                 ]),
             ])
@@ -62,26 +64,23 @@ class NavigationConfig extends Config
 
         $nav->section([
             $nav->title('Models'),
-            $nav->preset('crud.departments', [
+            $nav->preset('crud.department', [
                 'title' => ucfirst(__f("models.departments")),
                 'icon' => '<i class="fas fa-building">',
             ]),
-            $nav->preset('crud.employees', [
+            $nav->preset('crud.employee', [
                 'title' => ucfirst(__f("models.employees")),
                 'icon' => fa('users')
             ]),
-            $nav->preset('crud.projects', [
+            $nav->preset('crud.project', [
                 'title' => ucfirst(__f("models.projects")),
                 'icon' => '<i class="fas fa-project-diagram">',
             ]),
-            $nav->preset('crud.comments', [
+            $nav->preset('crud.comment', [
                 'title' => 'Comments',
                 'icon' => fa('comment'),
             ]),
 
-            $nav->preset('crud.articles', [
-                'icon' => fa('newspaper'),
-            ]),
         ]);
     }
 }
