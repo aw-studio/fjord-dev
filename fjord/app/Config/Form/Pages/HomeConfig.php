@@ -4,7 +4,6 @@ namespace FjordApp\Config\Form\Pages;
 
 use App\Models\Article;
 use App\Models\Employee;
-use Fjord\Crud\CrudForm;
 use Fjord\Crud\CrudShow;
 use Fjord\Support\Facades\Crud;
 use Fjord\Crud\Config\FormConfig;
@@ -20,20 +19,9 @@ class HomeConfig extends FormConfig
     public $controller = HomeController::class;
 
     /**
-     * Form name, is used for routing.
-     *
-     * @var string
-     */
-    public $formName = 'home';
-
-    public function form($form)
-    {
-    }
-
-    /**
      * Setup create and edit form.
      *
-     * @param \Fjord\Crud\CrudForm $form
+     * @param \Fjord\Crud\CrudShow $form
      * @return void
      */
     public function show(CrudShow $form)

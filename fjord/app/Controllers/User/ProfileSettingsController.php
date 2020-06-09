@@ -23,9 +23,9 @@ class ProfileSettingsController extends CrudController
      * @param string $operation
      * @return boolean
      */
-    public function authorize(FjordUser $user, string $operation): bool
+    public function authorize(FjordUser $user, string $operation, $id): bool
     {
-        return $user->id == fjord_user()->id;
+        return $user->id == $id;
     }
 
     /**
