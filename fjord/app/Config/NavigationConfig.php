@@ -60,7 +60,22 @@ class NavigationConfig extends Config
             $nav->group([
                 'title' => 'Fields',
                 'icon' => '<i class="fas fa-file"></i>',
-            ], $fields)
+            ], $fields),
+
+            $nav->group([
+                'title' => 'Relations',
+                'icon' => fa('link'),
+            ], [
+                $nav->preset('form.relations.one_relation', [
+                    'icon' => fa('square')
+                ]),
+                $nav->preset('form.relations.many_relation', [
+                    'icon' => fa('clone')
+                ]),
+                $nav->preset('relations.morph_to', [
+                    'icon' => fa('square')
+                ])
+            ])
         ]);
 
         $nav->section([
@@ -86,10 +101,12 @@ class NavigationConfig extends Config
 
         $nav->section([
             $nav->title('Models'),
+            /*
             $nav->preset('crud.department', [
                 'title' => ucfirst(__f("models.departments")),
                 'icon' => '<i class="fas fa-building">',
             ]),
+            */
             $nav->preset('crud.employee', [
                 'title' => ucfirst(__f("models.employees")),
                 'icon' => fa('users')
