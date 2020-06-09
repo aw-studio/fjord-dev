@@ -2,6 +2,7 @@
 
 namespace FjordApp\Config;
 
+use Illuminate\Support\Str;
 use Fjord\Application\Navigation\Config;
 use Fjord\Application\Navigation\Navigation;
 
@@ -22,7 +23,7 @@ class NavigationConfig extends Config
         $nav->section([
             $nav->title(__f('fj.user_administration')),
 
-            $nav->preset('user.user_index', [
+            $nav->preset('user.user', [
                 'icon' => fa('users')
             ]),
             $nav->preset('permissions')
@@ -44,6 +45,39 @@ class NavigationConfig extends Config
      */
     public function main(Navigation $nav)
     {
+        $fields = [];
+        foreach (glob(base_path('fjord/app/Config/Form/Fields/*.php')) as $path) {
+
+            $fieldName = str_replace('Config.php', '', basename($path));
+            $fields[] = $nav->preset('form.fields.' . Str::snake($fieldName), [
+                'icon' => fa('heading')
+            ]);
+        }
+
+        $nav->section([
+            $nav->title('Fields'),
+
+            $nav->group([
+                'title' => 'Fields',
+                'icon' => '<i class="fas fa-file"></i>',
+            ], $fields),
+
+            $nav->group([
+                'title' => 'Relations',
+                'icon' => fa('link'),
+            ], [
+                $nav->preset('form.relations.one_relation', [
+                    'icon' => fa('square')
+                ]),
+                $nav->preset('form.relations.many_relation', [
+                    'icon' => fa('clone')
+                ]),
+                $nav->preset('relations.morph_to', [
+                    'icon' => fa('square')
+                ])
+            ])
+        ]);
+
         $nav->section([
             $nav->title('Pages'),
             $nav->group([
@@ -67,10 +101,12 @@ class NavigationConfig extends Config
 
         $nav->section([
             $nav->title('Models'),
+            /*
             $nav->preset('crud.department', [
                 'title' => ucfirst(__f("models.departments")),
                 'icon' => '<i class="fas fa-building">',
             ]),
+            */
             $nav->preset('crud.employee', [
                 'title' => ucfirst(__f("models.employees")),
                 'icon' => fa('users')

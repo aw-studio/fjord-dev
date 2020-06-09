@@ -126,7 +126,7 @@ class ProjectConfig extends CrudConfig
         })->width(12);
     }
 
-    private function mainForm(CrudForm $form)
+    private function mainForm(CrudShow $form)
     {
         $form->input('title')
             ->max(60)

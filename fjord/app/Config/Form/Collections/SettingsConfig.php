@@ -2,7 +2,6 @@
 
 namespace FjordApp\Config\Form\Collections;
 
-use Fjord\Crud\CrudForm;
 use Fjord\Crud\CrudShow;
 use Fjord\Crud\Config\FormConfig;
 use Fjord\Crud\Config\Traits\HasCrudForm;

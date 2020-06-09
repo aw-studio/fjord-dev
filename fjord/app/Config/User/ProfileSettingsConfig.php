@@ -83,9 +83,9 @@ class ProfileSettingsConfig extends CrudConfig
             ->width(6)
             ->title(ucwords(__f('base.first_name')));
 
-        $form->input('first_name')
+        $form->input('last_name')
             ->width(6)
-            ->title(ucwords(__f('base.first_name')));
+            ->title(ucwords(__f('base.last_name')));
 
         $form->modal('change_email')
             ->title('E-Mail')

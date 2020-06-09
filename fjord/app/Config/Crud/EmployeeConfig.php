@@ -27,8 +27,6 @@ class EmployeeConfig extends CrudConfig
      */
     public $orderColumn = 'order_column';
 
-    public $expandIndexContainer = true;
-
     /**
      * Model class.
      *
@@ -44,20 +42,6 @@ class EmployeeConfig extends CrudConfig
     public $controller = EmployeeController::class;
 
     /**
-     * Index table search keys.
-     *
-     * @var array
-     */
-    public $search = ['last_name', 'first_name'];
-
-    /**
-     * Index table sort by default.
-     *
-     * @var string
-     */
-    public $sortByDefault = 'order_column.desc';
-
-    /**
      * Preview route.
      *
      * @param Employee $employee
@@ -69,66 +53,6 @@ class EmployeeConfig extends CrudConfig
     }
 
     /**
-     * Sort by keys.
-     *
-     * @return array
-     */
-    public function sortBy()
-    {
-        return [
-            'id.desc' => __f('fj.sort_new_to_old'),
-            'id.asc' => __f('fj.sort_old_to_new'),
-            'email.desc' => 'Email absteigend',
-            'email.asc' => 'Email aufsteigend',
-        ];
-    }
-
-    /**
-     * Initialize index query.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder $query
-     */
-    public function indexQuery(Builder $query)
-    {
-        $query->with('department')
-            ->with('projects')
-            ->withCount('projects');
-
-        return $query;
-    }
-
-    /**
-     * Index table filter groups.
-     *
-     * @return array $groups
-     */
-    public function filter()
-    {
-        return [
-            'Department' => [
-                'development' => 'Development',
-                'marketing' => 'Marketing',
-                'projectManagement' => 'Project-Management',
-                'sales' => 'Sales',
-                'humanResources' => 'Human-Resources'
-            ],
-        ];
-    }
-
-    /**
-     * Index component.
-     *
-     * @param string $component
-     * @return void
-     */
-    public function indexComponent($component)
-    {
-        $component->slot('indexControls', 'fj-test');
-        //$component->slot('navControls', 'fj-test');
-    }
-
-    /**
      * Setup index table.
      *
      * @param \Fjord\Vue\Crud\CrudIndex $table
@@ -136,45 +60,69 @@ class EmployeeConfig extends CrudConfig
      */
     public function index(CrudIndex $container)
     {
-        $table->col('Id')
-            ->value('{id}')
-            ->sortBy('id')
-            ->small();
+        $container->table(function ($table) {
+            $table->col('Id')
+                ->value('{id}')
+                ->sortBy('id')
+                ->small();
 
-        $table->component('fj-col-image')
-            ->src('{image.conversion_urls.sm}')
-            ->maxWidth('50px')
-            ->label('Image')
-            ->small();
+            $table->component('fj-col-image')
+                ->src('{image.conversion_urls.sm}')
+                ->maxWidth('50px')
+                ->label('Image')
+                ->small();
 
-        $table->col('Lastname')
-            ->value('{last_name}')
-            ->sortBy('last_name');
+            $table->col('Lastname')
+                ->value('{last_name}')
+                ->sortBy('last_name');
 
-        $table->col('Firstname')
-            ->value('{first_name}')
-            ->link('crud/employees/{id}/edit#email')
-            ->sortBy('first_name');
+            $table->col('Firstname')
+                ->value('{first_name}')
+                ->link('crud/employees/{id}/edit#email')
+                ->sortBy('first_name');
 
-        $table->col('E-Mail')
-            ->value('{email}')
-            ->sortBy('email');
+            $table->col('E-Mail')
+                ->value('{email}')
+                ->sortBy('email');
 
+            /*
+            $table->component('fj-col-crud-relation')
+                ->bind([
+                    'related' => 'department',
+                    'value' => 'name',
+                    'routePrefix' => Fjord::config('crud.department')->route_prefix
+                ])
+                ->label('Department')
+                ->sortBy('department.name');
+                */
 
-        $table->component('fj-col-crud-relation')
-            ->bind([
-                'related' => 'department',
-                'value' => 'name',
-                'routePrefix' => Fjord::config('crud.department')->route_prefix
+            $table->component('employee-projects')
+                ->label('Projects')
+                ->sortBy('projects_count')
+                ->link('crud/employees/{id}/edit#projects')
+                ->small();
+        })
+            ->sortByDefault('order_column.desc')
+            ->sortBy([
+                'id.desc' => __f('fj.sort_new_to_old'),
+                'id.asc' => __f('fj.sort_old_to_new'),
+                'email.desc' => 'Email absteigend',
+                'email.asc' => 'Email aufsteigend',
             ])
-            ->label('Department')
-            ->sortBy('department.name');
-
-        $table->component('employee-projects')
-            ->label('Projects')
-            ->sortBy('projects_count')
-            ->link('crud/employees/{id}/edit#projects')
-            ->small();
+            ->search('last_name', 'first_name')
+            ->filter([
+                'Department' => [
+                    'development' => 'Development',
+                    'marketing' => 'Marketing',
+                    'projectManagement' => 'Project-Management',
+                    'sales' => 'Sales',
+                    'humanResources' => 'Human-Resources'
+                ],
+            ])
+            ->query(fn ($query) => $query->with('department')
+                ->with('projects')
+                ->withCount('projects'))
+            ->width(12);
     }
 
     /**

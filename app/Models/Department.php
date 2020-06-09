@@ -25,6 +25,14 @@ class Department extends Model implements HasMediaContract
         'active' => 'boolean'
     ];
 
+    public function names()
+    {
+        return [
+            'singular' => 'Department',
+            'plural' => 'Departments'
+        ];
+    }
+
     public function getEmployeesCountAttribute()
     {
         return $this->employees()->count();
