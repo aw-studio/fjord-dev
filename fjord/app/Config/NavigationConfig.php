@@ -58,7 +58,7 @@ class NavigationConfig extends Config
             $nav->title('Fields'),
 
             $nav->group([
-                'title' => 'Pages',
+                'title' => 'Fields',
                 'icon' => '<i class="fas fa-file"></i>',
             ], $fields)
         ]);
