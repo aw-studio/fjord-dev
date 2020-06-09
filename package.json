@@ -38,6 +38,7 @@
         "melanke-watchjs": "^1.5.2",
         "node-sass-glob-importer": "^5.3.2",
         "placeholder-loading": "^0.2.6",
-        "vue-ctk-date-time-picker": "^2.4.0"
+        "vue-ctk-date-time-picker": "^2.4.0",
+        "vuedraggable": "^2.23.2"
     }
 }
