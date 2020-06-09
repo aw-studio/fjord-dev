@@ -63,7 +63,12 @@ class DepartmentConfig extends CrudConfig
                 ->sortBy('name');
         })
             ->sortByDefault('id.desc')
-            ->search('name')
+            ->filter([
+                'test' => [
+                    'abc' => 'Abc'
+                ]
+            ])
+            ->search('name', 'id')
             ->width(1 / 2);
 
         $container->component('fj-test-chart')

@@ -2,6 +2,7 @@
 
 namespace FjordApp\Config;
 
+use Illuminate\Support\Str;
 use Fjord\Application\Navigation\Config;
 use Fjord\Application\Navigation\Navigation;
 
@@ -44,6 +45,24 @@ class NavigationConfig extends Config
      */
     public function main(Navigation $nav)
     {
+        $fields = [];
+        foreach (glob(base_path('fjord/app/Config/Form/Fields/*.php')) as $path) {
+
+            $fieldName = str_replace('Config.php', '', basename($path));
+            $fields[] = $nav->preset('form.fields.' . Str::snake($fieldName), [
+                'icon' => fa('heading')
+            ]);
+        }
+
+        $nav->section([
+            $nav->title('Fields'),
+
+            $nav->group([
+                'title' => 'Pages',
+                'icon' => '<i class="fas fa-file"></i>',
+            ], $fields)
+        ]);
+
         $nav->section([
             $nav->title('Pages'),
             $nav->group([
