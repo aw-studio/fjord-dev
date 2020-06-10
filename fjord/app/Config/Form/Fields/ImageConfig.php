@@ -48,8 +48,9 @@ class ImageConfig extends FormConfig
         $form->card(function ($form) {
             $form->image('images')
                 ->translatable()
-                ->title('Translatable Images and crop.')
+                ->title('Translatable Images and crop file size 1.')
                 ->hint('Translatable and crop.')
+                ->maxFileSize(1)
                 ->maxFiles(5);
 
             $form->image('first_big_images')

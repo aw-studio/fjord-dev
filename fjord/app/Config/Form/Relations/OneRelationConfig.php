@@ -7,6 +7,7 @@ use Fjord\Crud\CrudShow;
 use App\Models\Department;
 use Fjord\Crud\Config\FormConfig;
 use FjordApp\Config\Crud\StargazerConfig;
+use FjordApp\Config\Crud\DepartmentConfig;
 use FjordApp\Controllers\Form\Relations\OneRelationController;
 
 class OneRelationConfig extends FormConfig
@@ -25,7 +26,7 @@ class OneRelationConfig extends FormConfig
      */
     public function routePrefix()
     {
-        return "fields/block";
+        return "relations/one-relation";
     }
 
     /**
@@ -53,7 +54,7 @@ class OneRelationConfig extends FormConfig
 
             $form->oneRelation('department')
                 ->title('Department')
-                ->linkText('{name}')
+                ->type('table')
                 ->routePrefix('department')
                 ->preview(function ($table) {
                     $table->col('name')->value('{name}');
@@ -62,28 +63,31 @@ class OneRelationConfig extends FormConfig
         });
 
         $form->card(function ($form) {
-            $form->info('Relation with custom names.');
+            $form->info('Relation link with custom names.');
 
             $form->oneRelation('names_department')
                 ->title('Department')
-                ->linkText('{name}')
+                ->type('link')
+                ->linkValue('{name}')
                 ->preview(function ($table) {
                     $table->col('name')->value('{name}');
                 })
+                ->use(DepartmentConfig::class)
                 ->names([
                     'singular' => 'DEPARTMENT',
                     'plural' => 'DEPARTMENTS',
-                ])
-                ->model(Department::class);
+                ]);
         });
 
         $form->card(function ($form) {
             $form->info('Relation with existing model config.');
 
+            /*
             $form->oneRelation('employees')
                 ->title('Employee')
-                ->linkText('{first_name} {last_name}')
-                ->model(Employee::class);
+                ->model(Employee::class)
+                ;
+                */
         });
 
         $form->card(function ($form) {
@@ -91,7 +95,6 @@ class OneRelationConfig extends FormConfig
 
             $form->oneRelation('stargazers')
                 ->title('Employee')
-                ->linkText('{first_name} {last_name}')
                 ->use(StargazerConfig::class);
         });
     }

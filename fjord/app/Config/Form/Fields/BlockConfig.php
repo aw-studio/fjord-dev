@@ -46,7 +46,7 @@ class BlockConfig extends FormConfig
     public function show(CrudShow $form)
     {
         $form->card(function ($form) {
-            $form->blocks('content')
+            $form->block('content')
                 ->title('Content')
                 ->repeatables(function ($repeatables) {
 

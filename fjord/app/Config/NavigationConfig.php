@@ -107,10 +107,7 @@ class NavigationConfig extends Config
                 'icon' => '<i class="fas fa-building">',
             ]),
             */
-            $nav->preset('crud.employee', [
-                'title' => ucfirst(__f("models.employees")),
-                'icon' => fa('users')
-            ]),
+
             $nav->preset('crud.project', [
                 'title' => ucfirst(__f("models.projects")),
                 'icon' => '<i class="fas fa-project-diagram">',

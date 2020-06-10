@@ -56,7 +56,7 @@ class Employee extends Model implements HasMediaContract
 
     public function block()
     {
-        return $this->blocks('block');
+        return $this->repeatables('block');
     }
 
     public function getImagesAttribute()
