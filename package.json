@@ -9,7 +9,10 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "chromedriver": "chromedriver &",
+        "test": "cd ./packages/aw-studio/fjord && npm run test && cd ./../../..",
+        "build": "npm run chromedriver && npm run test && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.19.2",
@@ -35,10 +38,7 @@
         "fjord": "file:vendor/aw-studio/fjord",
         "fjord-permissions": "file:vendor/aw-studio/fjord-permissions",
         "fs": "0.0.1-security",
-        "melanke-watchjs": "^1.5.2",
         "node-sass-glob-importer": "^5.3.2",
-        "placeholder-loading": "^0.2.6",
-        "vue-ctk-date-time-picker": "^2.4.0",
-        "vuedraggable": "^2.23.2"
+        "placeholder-loading": "^0.2.6"
     }
 }
