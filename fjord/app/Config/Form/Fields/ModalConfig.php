@@ -59,6 +59,11 @@ class ModalConfig extends FormConfig
                 ->confirmWithPassword()
                 ->form(function ($form) {
                     $form->input('email')->title('E-Mail');
+                    $form->input('email')->title('E-Mail');
+                    $form->input('email')->title('E-Mail');
+                    $form->input('email')->title('E-Mail');
+                    $form->input('email')->title('E-Mail');
+                    $form->input('email')->title('E-Mail');
                 });
 
             $form->modal('change_email')

@@ -101,12 +101,10 @@ class NavigationConfig extends Config
 
         $nav->section([
             $nav->title('Models'),
-            /*
             $nav->preset('crud.department', [
                 'title' => ucfirst(__f("models.departments")),
                 'icon' => '<i class="fas fa-building">',
             ]),
-            */
 
             $nav->preset('crud.project', [
                 'title' => ucfirst(__f("models.projects")),

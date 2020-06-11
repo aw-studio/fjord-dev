@@ -80,12 +80,17 @@ class MorphToConfig extends CrudConfig
      */
     protected function mainForm(CrudShow $form)
     {
+        $form->input('body')->title('Body');
         $form->relation('commentable')
             ->title('Comments morphTo')
-            ->small()
             ->morphTypes(function ($morph) {
-                $morph->to(Employee::class)->title('Employee')->linkText('abc');
-                $morph->to(Department::class)->title('Department')->linkText('abc');
+                $morph->to(Employee::class)
+                    ->title('Employee')
+                    ->preview(fn ($table) => $table->col('Name')->value('{name}'));
+
+                $morph->to(Department::class)
+                    ->title('Department')
+                    ->preview(fn ($table) => $table->col('Name')->value('{name}'));
             });
     }
 }
