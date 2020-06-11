@@ -8,7 +8,7 @@ use App\Models\Department;
 use Fjord\Crud\Config\CrudConfig;
 use FjordApp\Controllers\Crud\DepartmentController;
 
-class DepartmentsConfig extends CrudConfig
+class DepartmentConfig extends CrudConfig
 {
     /**
      * Model class.

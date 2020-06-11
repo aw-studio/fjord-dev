@@ -50,12 +50,12 @@ class Department extends Model implements HasMediaContract
 
     public function content()
     {
-        return $this->blocks('content');
+        return $this->repeatables('content');
     }
 
     public function block()
     {
-        return $this->blocks('block');
+        return $this->repeatables('block');
     }
 
     /**

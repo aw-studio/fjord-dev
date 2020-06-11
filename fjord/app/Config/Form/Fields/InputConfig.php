@@ -46,6 +46,8 @@ class InputConfig extends FormConfig
     public function show(CrudShow $form)
     {
         $form->card(function ($form) {
+            $form->input();
+
             $form->input('title')
                 ->title('Title')
                 ->hint('The Title is shown at the top of the page.')
