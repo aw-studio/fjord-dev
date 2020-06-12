@@ -15,7 +15,7 @@ class DashboardController
     public function __invoke(Request $request)
     {
         return view('fjord::app')
-            ->withComponent('example')
+            ->withComponent('fj-chart')
             ->withTitle('Dashboard')
             ->withProps([
                 'title' => 'Dashboard'
