@@ -18,6 +18,8 @@ class CreateFormBlocksTable extends Migration
 
             $table->string('model_type')->nullable();
             $table->bigInteger('model_id')->nullable();
+            $table->string('config_type');
+            $table->string('form_type')->nullable();
             $table->string('field_id')->nullable();
 
             $table->string('type')->nullable();
@@ -48,7 +50,7 @@ class CreateFormBlocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('form_blocks');
         Schema::dropIfExists('form_block_translations');
+        Schema::dropIfExists('form_blocks');
     }
 }

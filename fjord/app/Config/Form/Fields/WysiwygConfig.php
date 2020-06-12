@@ -48,6 +48,9 @@ class WysiwygConfig extends FormConfig
         $form->card(function ($form) {
             $form->wysiwyg('text')
                 ->translatable()
+                ->colors([
+                    '#07D9B2', '#00284a', 'cyan', 'green', 'red', 'purple', 'yellow'
+                ])
                 ->title('Description')
                 ->hint('The Description for some Object.');
         });

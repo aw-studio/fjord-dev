@@ -49,13 +49,14 @@ class CheckboxesConfig extends FormConfig
             $form->checkboxes('fruits')
                 ->title('Fruits')
                 ->options([
-                    'orange' => 'Orange',
-                    'apple' => 'Apple',
-                    'pineapple' => 'Pineapple',
-                    'grape' => 'Grape',
+                    'orange' => __f('fruits.orange'),
+                    'apple' => __f('fruits.apple'),
+                    'pineapple' => __f('fruits.pineapple'),
+                    'grape' => __f('fruits.grape'),
+                    'dragonfruit' => __f('fruits.dragonfruit')
                 ])
-                ->hint('Select your fruits.')
-                ->width(6);
+                ->hint('Smash your fruits.')
+                ->width(12);
         });
     }
 }

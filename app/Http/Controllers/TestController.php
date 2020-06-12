@@ -10,13 +10,9 @@ class TestController extends Controller
 {
     public function __invoke()
     {
-        $comment = Comment::first();
 
-        dd($comment->commentable);
+        $form = Form::load('fields', 'wysiwyg');
 
-        $query = $comment->commentable();
-        //dd($comment->commentable);
-
-        dd($query->getResultsByType(Project::class)->get());
+        return $form->text;
     }
 }
