@@ -116,5 +116,12 @@ class NavigationConfig extends Config
             ]),
 
         ]);
+
+        $nav->section([
+            $nav->title('Charts'),
+            $nav->preset('form.charts.test', [
+                'icon' => '<i class="fas fa-chart-bar">'
+            ]),
+        ]);
     }
 }
