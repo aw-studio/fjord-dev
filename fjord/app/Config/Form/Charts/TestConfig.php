@@ -45,23 +45,13 @@ class TestConfig extends FormConfig
      */
     public function show(CrudShow $container)
     {
-        $container->chart('charts.sales_chart_count')->width(1 / 2);
-        $container->chart('charts.sales_chart_avg')->width(1 / 2);
-        $container->chart('charts.sales_chart_max')->width(12);
 
-        /*
-        $form->component('fj-chart')
-            ->title('How much money did we make today?');
+        $container->chart('charts.sales_chart_count')->width(1 / 3)->height('250px');
+        $container->chart('charts.sales_chart_avg')->width(1 / 3)->height('250px');
+        $container->chart('charts.sales_chart_max')->width(1 / 3)->height('250px');
 
-
-        /*
-        $form->component('fj-chart')
-            ->variant('primary')
-            ->title('How much money did we make today?');
-
-        $form->component('fj-chart')
-            ->variant('secondary')
-            ->title('How much money did we make today?');
-            */
+        $container->chart('charts.sales_product_chart')->width(1 / 3)->height('250px')->variant('primary');
+        $container->chart('charts.sales_product_chart')->width(1 / 3)->height('250px')->variant('secondary');
+        $container->chart('charts.sales_product_chart')->width(1 / 3)->height('250px')->variant('white');
     }
 }

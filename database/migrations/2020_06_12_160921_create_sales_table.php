@@ -17,6 +17,7 @@ class CreateSalesTable extends Migration
             $table->id();
             $table->integer('price');
             $table->integer('products');
+            $table->string('product');
             $table->timestamps();
         });
     }

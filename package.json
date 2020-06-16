@@ -39,6 +39,7 @@
         "fjord-permissions": "file:vendor/aw-studio/fjord-permissions",
         "fs": "0.0.1-security",
         "node-sass-glob-importer": "^5.3.2",
+        "numeral": "^2.0.6",
         "placeholder-loading": "^0.2.6",
         "vuex": "^3.4.0"
     }

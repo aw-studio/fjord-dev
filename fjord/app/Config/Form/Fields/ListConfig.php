@@ -59,6 +59,9 @@ class ListConfig extends FormConfig
 
                     $form->icon('icons')
                         ->title('Icon');
+
+                    $form->image('images')
+                        ->title('Images');
                 });
 
             // ...

@@ -9,6 +9,11 @@ $factory->define(Sale::class, function (Faker $faker) {
     return [
         'price' => $faker->numberBetween(100, 15000),
         'products' => $faker->numberBetween(1, 10),
-        'created_at' => $faker->dateTimeBetween($startDate = '-30 days', $endDate = 'now')
+        'product' => $faker->randomElement([
+            'Schuh',
+            'T-shirt',
+            'Pullover',
+        ]),
+        'created_at' => $faker->dateTimeBetween($startDate = '-60 days', $endDate = 'now')
     ];
 });

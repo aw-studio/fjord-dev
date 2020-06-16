@@ -3,10 +3,9 @@
 namespace FjordApp\Config\Charts;
 
 use App\Models\Sale;
-use Carbon\CarbonInterface;
-use Fjord\Chart\ChartConfig;
+use Fjord\Chart\Config\AreaChartConfig;
 
-class SalesChartMaxConfig extends ChartConfig
+class SalesChartMaxConfig extends AreaChartConfig
 {
     /**
      * Variant
@@ -16,23 +15,20 @@ class SalesChartMaxConfig extends ChartConfig
     public $variant = 'white';
 
     /**
+     * Model class.
+     *
+     * @var string
+     */
+    public $model = Sale::class;
+
+    /**
      * Chart title.
      *
      * @return string
      */
-    public function title()
+    public function title(): string
     {
         return 'Max Sales Price';
-    }
-
-    /**
-     * Select.
-     *
-     * @return void
-     */
-    public function select()
-    {
-        return Sale::selectRaw('SELECT MAX(price)');
     }
 
     /**
@@ -41,9 +37,9 @@ class SalesChartMaxConfig extends ChartConfig
      * @param Builder $query
      * @return mixed
      */
-    public function value($query)
+    public function value($query): int
     {
-        return $query->first()->price;
+        return $query->first()->price ?? 0;
     }
 
     /**
@@ -51,7 +47,7 @@ class SalesChartMaxConfig extends ChartConfig
      *
      * @return void
      */
-    public function result($values)
+    public function result($values): int
     {
         return round($values->average(), 2);
     }

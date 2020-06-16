@@ -4,8 +4,9 @@ namespace FjordApp\Config\Charts;
 
 use App\Models\Sale;
 use Fjord\Chart\ChartConfig;
+use Fjord\Chart\Config\AreaChartConfig;
 
-class SalesChartCountConfig extends ChartConfig
+class SalesChartCountConfig extends AreaChartConfig
 {
     /**
      * Variant
@@ -15,23 +16,20 @@ class SalesChartCountConfig extends ChartConfig
     public $variant = 'primary';
 
     /**
+     * Model class.
+     *
+     * @var string
+     */
+    public $model = Sale::class;
+
+    /**
      * Chart title.
      *
      * @return string
      */
-    public function title()
+    public function title(): string
     {
         return 'Sales Count';
-    }
-
-    /**
-     * Select.
-     *
-     * @return void
-     */
-    public function select()
-    {
-        return Sale::select('price');
     }
 
     /**
@@ -40,7 +38,7 @@ class SalesChartCountConfig extends ChartConfig
      * @param Builder $query
      * @return mixed
      */
-    public function value($query)
+    public function value($query): int
     {
         return $query->count();
     }
@@ -50,7 +48,7 @@ class SalesChartCountConfig extends ChartConfig
      *
      * @return void
      */
-    public function result($values)
+    public function result($values): int
     {
         return $values->sum();
     }

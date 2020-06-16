@@ -3,10 +3,10 @@
 namespace FjordApp\Config\Charts;
 
 use App\Models\Sale;
-use Carbon\CarbonInterface;
-use Fjord\Chart\ChartConfig;
+use Illuminate\Support\Collection;
+use Fjord\Chart\Config\AreaChartConfig;
 
-class SalesChartAvgConfig extends ChartConfig
+class SalesChartAvgConfig extends AreaChartConfig
 {
     /**
      * Variant
@@ -16,32 +16,29 @@ class SalesChartAvgConfig extends ChartConfig
     public $variant = 'secondary';
 
     /**
+     * Model class.
+     *
+     * @var string
+     */
+    public $model = Sale::class;
+
+    /**
      * Chart title.
      *
      * @return string
      */
-    public function title()
+    public function title(): string
     {
         return 'Average Sales Price';
-    }
-
-    /**
-     * Select.
-     *
-     * @return void
-     */
-    public function select()
-    {
-        return Sale::select('price');
     }
 
     /**
      * Default value.
      *
      * @param Builder $query
-     * @return mixed
+     * @return integer
      */
-    public function value($query)
+    public function value($query): int
     {
         return $query->average('price');
     }
@@ -51,9 +48,8 @@ class SalesChartAvgConfig extends ChartConfig
      *
      * @return void
      */
-    public function result($values)
+    public function result(Collection $values): int
     {
-
         return round($values->average(), 2);
     }
 }
