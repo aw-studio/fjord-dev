@@ -40,9 +40,9 @@ class SalesProductChartConfig extends DonutChartConfig
     public function value($query): array
     {
         return [
-            (clone $query)->where('product', 'T-shirt')->count(),
-            (clone $query)->where('product', 'Schuh')->count(),
-            (clone $query)->where('product', 'Pullover')->count(),
+            $this->count((clone $query)->where('product', 'T-shirt')),
+            $this->count((clone $query)->where('product', 'Schuh')),
+            $this->count((clone $query)->where('product', 'Pullover')),
         ];
     }
 

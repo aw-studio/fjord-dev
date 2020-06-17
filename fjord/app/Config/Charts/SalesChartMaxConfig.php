@@ -37,9 +37,9 @@ class SalesChartMaxConfig extends AreaChartConfig
      * @param Builder $query
      * @return mixed
      */
-    public function value($query): int
+    public function value($query)
     {
-        return $query->first()->price ?? 0;
+        return $this->max($query, 'price');
     }
 
     /**

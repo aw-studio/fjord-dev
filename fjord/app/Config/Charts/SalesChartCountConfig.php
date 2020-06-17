@@ -32,15 +32,20 @@ class SalesChartCountConfig extends AreaChartConfig
         return 'Sales Count';
     }
 
+    public function dailyGoal()
+    {
+        return 10;
+    }
+
     /**
      * Default value.
      *
      * @param Builder $query
      * @return mixed
      */
-    public function value($query): int
+    public function value($query)
     {
-        return $query->count();
+        return $this->count($query);
     }
 
     /**

@@ -22,6 +22,8 @@ class SalesChartAvgConfig extends AreaChartConfig
      */
     public $model = Sale::class;
 
+
+
     /**
      * Chart title.
      *
@@ -38,9 +40,9 @@ class SalesChartAvgConfig extends AreaChartConfig
      * @param Builder $query
      * @return integer
      */
-    public function value($query): int
+    public function value($query)
     {
-        return $query->average('price');
+        return $this->average($query, 'price');
     }
 
     /**

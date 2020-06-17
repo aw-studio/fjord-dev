@@ -26,7 +26,7 @@ class EmployeeController extends CrudController
      */
     public function authorize(FjordUser $user, string $operation): bool
     {
-        return $user->can("{$operation} employees");
+        return true;
     }
 
     /**

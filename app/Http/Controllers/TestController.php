@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Project;
 use Fjord\Chart\ChartSet;
 use Fjord\Support\Facades\Form;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
@@ -14,18 +15,24 @@ class TestController extends Controller
     {
         $time = now()->subWeek()->startOfWeek();
 
-        $set = ChartSet::make(
-            Sale::select('price'),
-            fn ($query) => $this->getValue($query),
-            fn ($time, $i) => $time->addDays($i),
-            fn ($query, $time) => $query->whereInDay('created_at', $time),
-        )
-            ->label(fn ($time) => $time->format('l'))
-            ->iterations(7);
+        $query = Sale::query();
 
-        $thisWeek = $set->load($time);
-        $lastWeek = $set->load($time->copy()->subWeek());
-        dd($thisWeek, $lastWeek);
+        $values = null;
+        for ($i = 0; $i < 30; $i++) {
+            $value = (clone $query)
+                ->selectRaw("COUNT(*) as value")
+                ->whereInDay('created_at', $time->addDays($i));
+
+            if (!$values) {
+                $values =  $value;
+            } else {
+                $values->unionAll($value);
+            }
+        }
+
+        $result = $values->get()->pluck('value');
+
+        return view('test')->withResult($result);
     }
 
     public function getValue($query)
