@@ -22,7 +22,7 @@ class SalesCountTotalChartConfig extends NumberChartConfig
      */
     public function title(): string
     {
-        return 'Sales Count';
+        return 'Sales Count XYZ';
     }
 
     /**

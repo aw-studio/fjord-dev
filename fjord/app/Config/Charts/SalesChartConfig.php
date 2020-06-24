@@ -22,7 +22,7 @@ class SalesChartConfig extends AreaChartConfig
      */
     public function title(): string
     {
-        return 'Sales Count';
+        return 'Sales Count B';
     }
 
     /**

@@ -22,7 +22,7 @@ class SalesProgressChartConfig extends ProgressChartConfig
      */
     public function title(): string
     {
-        return 'Sales Count';
+        return 'Sales Count C';
     }
 
     /**
@@ -43,7 +43,7 @@ class SalesProgressChartConfig extends ProgressChartConfig
      */
     public function maxValue()
     {
-        return 500;
+        return 200;
     }
 
     /**

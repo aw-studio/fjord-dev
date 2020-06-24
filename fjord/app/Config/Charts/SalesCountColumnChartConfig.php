@@ -16,19 +16,26 @@ class SalesCountColumnChartConfig extends BarChartConfig
     public $model = \App\Models\Sale::class;
 
     /**
+     * Compare to previous time.
+     *
+     * @var boolean
+     */
+    public $compare = false;
+
+    /**
      * Chart title.
      *
      * @return string
      */
     public function title(): string
     {
-        return 'Sales Count';
+        return 'Sales Count A';
     }
 
-    public function dailyGoal()
-    {
-        return 10;
-    }
+    // public function dailyGoal()
+    // {
+    //     return 10;
+    // }
 
     /**
      * Mount.

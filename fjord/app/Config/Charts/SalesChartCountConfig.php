@@ -29,12 +29,12 @@ class SalesChartCountConfig extends AreaChartConfig
      */
     public function title(): string
     {
-        return 'Sales Count';
+        return 'Sales Count F';
     }
 
     public function dailyGoal()
     {
-        return 10;
+        return 30;
     }
 
     /**

@@ -48,12 +48,14 @@ class TestConfig extends FormConfig
         // $container->chart('charts.sales_count_total_chart')->width(1 / 3)->height('190px');
 
         // Bar
-        $container->chart('charts.sales_count_column_chart')->width(1 / 3)->height('190px');
+        $container->chart('charts.sales_count_column_chart')->width(4)->height('300px');
+        $container->chart('charts.sales_count_column_chart')->width(4)->height('300px')->variant('white');
+        $container->chart('charts.sales_count_column_chart')->width(4)->height('300px')->variant('secondary');
 
         // Progress
-        // $container->chart('charts.sales_progress_chart')->width(1 / 3)->height('190px');
+        $container->chart('charts.sales_progress_chart')->width(1 / 3)->height('190px');
 
-        $container->chart('charts.sales_chart_count')->width(1 / 3)->height('190px');
+        // $container->chart('charts.sales_chart_count')->width(1 / 3)->height('190px');
         // $container->chart('charts.sales_chart_avg')->width(1 / 3)->height('250px');
         // $container->chart('charts.sales_chart_max')->width(1 / 3)->height('250px');
 
