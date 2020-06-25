@@ -14,6 +14,8 @@ class SalesProductChartConfig extends DonutChartConfig
      */
     public $variant = 'secondary';
 
+    public $compare = true;
+
     /**
      * Model class.
      *
@@ -40,6 +42,9 @@ class SalesProductChartConfig extends DonutChartConfig
     public function value($query): array
     {
         return [
+            $this->count((clone $query)->where('product', 'T-shirt')),
+            $this->count((clone $query)->where('product', 'Schuh')),
+            $this->count((clone $query)->where('product', 'Pullover')),
             $this->count((clone $query)->where('product', 'T-shirt')),
             $this->count((clone $query)->where('product', 'Schuh')),
             $this->count((clone $query)->where('product', 'Pullover')),

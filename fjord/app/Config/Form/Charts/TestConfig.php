@@ -45,22 +45,29 @@ class TestConfig extends FormConfig
      */
     public function show(CrudShow $container)
     {
-        // $container->chart('charts.sales_count_total_chart')->width(1 / 3)->height('190px');
+        // Number
+        $container->chart('charts.sales_count_total_chart')->width(4)->height('135px');
+        $container->chart('charts.sales_count_total_chart')->width(4)->height('135px')->variant('secondary');
+        $container->chart('charts.sales_count_total_chart')->width(4)->height('135px')->variant('white');
+
+        // Area / Line
+        $container->chart('charts.sales_chart_count')->width(6)->height('250px')->variant('white');
+        $container->chart('charts.sales_chart_avg')->width(6)->height('250px')->variant('primary');
+        //$container->chart('charts.sales_chart_max')->width(1 / 3)->height('250px')->variant('secondary');
+
+        // Radial
+        $container->chart('charts.sales_product_chart')->width(1 / 3)->height('250px')->variant('primary');
+        $container->chart('charts.sales_product_chart')->width(1 / 3)->height('250px')->variant('secondary');
+        $container->chart('charts.sales_product_chart')->width(1 / 3)->height('250px')->variant('white');
 
         // Bar
-        $container->chart('charts.sales_count_column_chart')->width(4)->height('300px');
-        $container->chart('charts.sales_count_column_chart')->width(4)->height('300px')->variant('white');
-        $container->chart('charts.sales_count_column_chart')->width(4)->height('300px')->variant('secondary');
+        $container->chart('charts.sales_count_column_chart')->width(6)->height('300px');
+        $container->chart('charts.sales_count_column_chart')->width(6)->height('300px')->variant('white');
+        //$container->chart('charts.sales_count_column_chart')->width(4)->height('300px')->variant('secondary');
 
         // Progress
-        $container->chart('charts.sales_progress_chart')->width(1 / 3)->height('190px');
-
-        // $container->chart('charts.sales_chart_count')->width(1 / 3)->height('190px');
-        // $container->chart('charts.sales_chart_avg')->width(1 / 3)->height('250px');
-        // $container->chart('charts.sales_chart_max')->width(1 / 3)->height('250px');
-
-        // $container->chart('charts.sales_product_chart')->width(1 / 3)->height('190px')->variant('primary');
-        // $container->chart('charts.sales_product_chart')->width(1 / 3)->height('250px')->variant('secondary');
-        // $container->chart('charts.sales_product_chart')->width(1 / 3)->height('250px')->variant('white');
+        $container->chart('charts.sales_progress_chart')->width(4)->height('250px')->variant('secondary');
+        $container->chart('charts.sales_progress_chart')->width(4)->height('250px')->variant('white');
+        $container->chart('charts.sales_progress_chart')->width(4)->height('250px');
     }
 }

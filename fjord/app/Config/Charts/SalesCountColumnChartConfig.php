@@ -15,11 +15,6 @@ class SalesCountColumnChartConfig extends BarChartConfig
      */
     public $model = \App\Models\Sale::class;
 
-    /**
-     * Compare to previous time.
-     *
-     * @var boolean
-     */
     public $compare = false;
 
     /**

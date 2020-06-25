@@ -15,6 +15,8 @@ class SalesChartAvgConfig extends AreaChartConfig
      */
     public $variant = 'secondary';
 
+    public $compare = true;
+
     /**
      * Model class.
      *

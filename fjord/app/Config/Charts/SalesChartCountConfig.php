@@ -15,6 +15,9 @@ class SalesChartCountConfig extends AreaChartConfig
      */
     public $variant = 'primary';
 
+
+    public $compare = true;
+
     /**
      * Model class.
      *

@@ -37,21 +37,21 @@ class SalesProgressChartConfig extends ProgressChartConfig
     }
 
     /**
-     * Get maximum value.
+     * Get goal value.
      *
      * @return integer|float
      */
-    public function maxValue()
+    public function goal()
     {
         return 200;
     }
 
     /**
-     * Get minimum value.
+     * Get start value.
      *
      * @return integer|float
      */
-    public function minValue()
+    public function start()
     {
         return 0;
     }
