@@ -35,6 +35,7 @@
         "webpack-cli": "^3.3.11"
     },
     "dependencies": {
+        "chromedriver": "^83.0.0",
         "fjord": "file:vendor/aw-studio/fjord",
         "fjord-permissions": "file:vendor/aw-studio/fjord-permissions",
         "fs": "0.0.1-security",
